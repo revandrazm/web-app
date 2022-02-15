@@ -1,0 +1,82 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbarul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333333;
+    border-radius: 4px;
+}
+
+.navbarli {
+    float: left;
+}
+
+.navbarli:hover {
+    background-color: #292929;
+}
+
+.navbara {
+    display: block;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.divsettings {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    margin: auto;
+    width: 50%;
+    padding: 30px;
+}
+
+.logoutbutton {
+    text-align: center;
+    color: white;
+    background-color: #c72c21;
+    width: 11%;
+    padding: 10px;
+    display: block;
+    border-radius: 4px;
+    box-sizing: border-box;
+    border: none;
+}
+
+.logoutbutton:hover {
+    background-color: #9f231a;
+    cursor: pointer;
+}
+
+.deletebutton {
+    text-align: center;
+    background-color: #c72c21;
+    width: 20%;
+    padding: 10px;
+    display: block;
+    border-radius: 4px;
+    box-sizing: border-box;
+    border: none;
+}
+
+.deletebutton:hover {
+    background-color: #9f231a;
+    cursor: pointer;
+}
+
+.active {
+    background-color: #04AA6D;
+}
+
+.active:hover {
+    background-color: #038857;
+}
+
+.profile {
+    float: right;
+}
+

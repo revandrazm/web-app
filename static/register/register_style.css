@@ -1,0 +1,85 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.divregister {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    margin: auto;
+    width: 50%;
+    padding: 30px;
+}
+
+p {
+    font-weight: bold;
+    text-align: right;
+    font-size: small;
+}
+
+a {
+    font-weight: bold;    
+    text-align: right;
+    font-size: small;
+    text-decoration: none;
+}
+
+.username {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 2px solid #cccccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.password {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 2px solid #cccccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.button {
+    text-align: center;
+    color: white;
+    background-color: #04AA6D;
+    width: 11%;
+    padding: 10px;
+    display: block;
+    border-radius: 4px;
+    box-sizing: border-box;
+    border: none;
+}
+
+.username:hover {
+    border: 2px solid #a3a3a3;
+}
+
+.password:hover {
+    border: 2px solid #a3a3a3;
+}
+
+.button:hover {
+    background-color: #049962;
+    cursor: pointer;
+}
+
+.username:focus {
+    outline: none !important;
+    border: 2px solid #525252;
+}
+
+.password:focus {
+    outline: none !important;
+    border: 2px solid #525252;
+}
+
+.error {
+    font-weight: normal;
+    color: red;
+    font-size: small;
+}

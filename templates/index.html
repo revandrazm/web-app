@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block head %}
+    <link href="/static/index_styles.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+
+    <ul>
+        <li class="active"><a href="/">Home</a></li>
+        <li><a href="/search">Search</a></li>
+        <li><a href="/settings">Settings</a></li>
+        <li class="profile"><a href="/profile">{{username}}</a></li>
+    </ul>
+
+{% endblock %}

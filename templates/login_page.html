@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block head %}
+    <link href="/static/login/login_style.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+
+    <div class="divlogin">
+        <form action="/login" method="post" autocomplete="off">
+            <label for="username">Username</label>
+            <input name="username" type="text" class="username" placeholder="Username" autofocus>
+
+            <label for="password">Password</label>
+            <input name="password" type="password" class="password" placeholder="Password">
+            
+            <p class="error" id="error">{{errorMessage}}</p>
+
+            <input name="submit" type="submit" class="button" value="Login">
+            <p>Don't have an account? <a href="/register">Register</a></p>
+        </form>
+    </div>
+
+    <script src="/static/login/login_script.js"></script>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block head %}
+    <link href="/static/profile_style.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <ul class="navbarul">
+        <li class="navbarli"><a href="/" class="navbara">Home</a></li>
+        <li class="navbarli"><a href="/search" class="navbara">Search</a></li>
+        <li class="navbarli"><a href="/settings" class="navbara">Settings</a></li>
+        <li class="navbarli profile active"><a href="/profiles" class="navbara">{{username}}</a></li>
+    </ul>
+
+    <div class="divsettings">
+        <form action="/logout" method="post">
+            <input name="logout" type="submit" class="logoutbutton" value="Logout">
+        </form>
+        <p></p>
+        <button class="deletebutton"><a href="/delete" style="color: white; text-decoration: none;">Delete Account</a></button>
+    </div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block head %}
+    <link href="/static/register/register_style.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+
+    <div class="divregister">
+        <form action="/register" method="post" autocomplete="off">
+            <label for="username">Username</label>
+            <input name="username" type="text" class="username" placeholder="Username" autofocus>
+
+            <label for="password1">Password</label>
+            <input name="password1" type="password" class="password" placeholder="Password">
+
+            <label for="password2">Re-Enter Password</label>
+            <input name="password2" type="password" class="password" placeholder="Re-Enter Password">
+            
+            <p class="error" id="error">{{errorMessage}}</p>
+
+            <input name="submit" type="submit" class="button" value="Register">
+            <p>Already have an account? <a href="/login">Login</a></p>
+        </form>
+    </div>
+
+    <script src="/static/register/register_script.js"></script>
+
+{% endblock %}
