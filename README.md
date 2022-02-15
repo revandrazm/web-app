@@ -1,6 +1,5 @@
 # webApp
-simple web application with register, login, and other features. (wip)
-simple web application features. (wip)
+simple web application with features. (wip)
 
 ## Features
 - Register
