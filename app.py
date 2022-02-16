@@ -96,7 +96,7 @@ def delete():
     return render_template("delete.html")
 
 @app.route("/search", methods=["GET", "POST"])
-def searchBar():
+def search():
     check = session_check("username")
     if check:
         return check
@@ -131,7 +131,7 @@ def logout():
     return redirect("/login")
 
 @app.route("/output")
-def search():
+def output():
     q = request.args.get("q")
     if q:
         accounts = select_table_like("data.db", request.args.get("q"))
