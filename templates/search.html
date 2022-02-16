@@ -1,7 +1,7 @@
 {% extends "layout_navbar.html" %}
 
 {% block head %}
-    <link href="/static/search_style.css" rel="stylesheet">
+    <link href="/static/search/search_style.css" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
@@ -23,22 +23,5 @@
         <ul id="showUsername"></ul>
     </div>
 
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
-        <script>
-            
-            let input = document.querySelector("input");
-            input.addEventListener("keyup", function() {
-                $.get("/output?q=" + input.value, function(accounts) {
-                    let html = "";
-                    for (let id in accounts) {
-                        let username = accounts[id].username;
-                        html += "<li>" + username + "</li>";
-                    }
-                    document.querySelector("#showUsername").innerHTML = html
-                });
-            });
-
-        </script>
-    </div>
+    <script src="/static/search/search_script.js"></script>
 {% endblock %}
