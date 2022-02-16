@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
 {% block head %}
+    <link href="/static/navbar.css" rel="stylesheet">
     <link href="/static/profile_style.css" rel="stylesheet">
 {% endblock %}
 
@@ -9,7 +10,7 @@
         <li class="navbarli"><a href="/" class="navbara">Home</a></li>
         <li class="navbarli"><a href="/search" class="navbara">Search</a></li>
         <li class="navbarli"><a href="/settings" class="navbara">Settings</a></li>
-        <li class="navbarli profile active"><a href="/profiles" class="navbara">{{username}}</a></li>
+        <li class="navbarli navbarprofile navbaractive"><a href="/profiles" class="navbara">{{username}}</a></li>
     </ul>
 
     <div class="divsettings">

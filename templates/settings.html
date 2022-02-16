@@ -1,14 +1,14 @@
 {% extends "layout.html" %}
 
 {% block head %}
-    <link href="/static/settings_style.css" rel="stylesheet">
+    <link href="/static/navbar.css" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
-    <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/search">Search</a></li>
-        <li class="active"><a href="/settings">Settings</a></li>
-        <li class="profile"><a href="/profile">{{username}}</a></li>
+    <ul class="navbarul">
+        <li class="navbarli"><a href="/" class="navbara">Home</a></li>
+        <li class="navbarli"><a href="/search" class="navbara">Search</a></li>
+        <li class="navbarli navbaractive"><a href="/settings" class="navbara">Settings</a></li>
+        <li class="navbarli navbarprofile"><a href="/profile" class="navbara">{{username}}</a></li>
     </ul>
 {% endblock %}
