@@ -1,0 +1,30 @@
+.divsettings {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    margin: auto;
+    width: 100%;
+    padding-top: 100px;
+}
+
+.githubbutton {
+    text-align: center;
+    background-color: #1d80be;
+    width: 11%;
+    padding: 10px;
+    display: block;
+    border-radius: 4px;
+    box-sizing: border-box;
+    border: none;
+    transition-delay: .1s;
+}
+
+.githubbutton:hover {
+    background-color: #16608e;
+    cursor: pointer;
+}
+
+.githubtext {
+    text-decoration: none;
+    color: whitesmoke;
+    font-weight: bold;
+}
