@@ -98,7 +98,6 @@ def delete_check(fileName: str, sessionUsername: str, username: str, password1: 
     
     # prevent user from deleting other account
     if sessionUsername != username:
-        print("sessionUsername != username")
         return render_template("delete.html", errorMessage=errorMessage)
     
     # check if user entered correct username and password
