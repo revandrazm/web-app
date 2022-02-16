@@ -1,7 +1,6 @@
-{% extends "layout.html" %}
+{% extends "layout_navbar.html" %}
 
 {% block head %}
-    <link href="/static/navbar.css" rel="stylesheet">
     <link href="/static/profile_style.css" rel="stylesheet">
 {% endblock %}
 
@@ -21,8 +20,4 @@
         <p></p>
         <button class="deletebutton"><a href="/delete" style="color: white; text-decoration: none;">Delete Account</a></button>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://momentjs.com/downloads/moment.js"></script>
-    <script src="/static/time.js"></script>
 {% endblock %}

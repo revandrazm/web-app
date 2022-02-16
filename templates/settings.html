@@ -1,8 +1,4 @@
-{% extends "layout.html" %}
-
-{% block head %}
-    <link href="/static/navbar.css" rel="stylesheet">
-{% endblock %}
+{% extends "layout_navbar.html" %}
 
 {% block body %}
     <ul class="navbarul">
@@ -12,8 +8,4 @@
         <li class="navbarli navbara navbartime" id="time"></li>
         <li class="navbarli navbarprofile"><a href="/profile" class="navbara">{{username}}</a></li>
     </ul>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://momentjs.com/downloads/moment.js"></script>
-    <script src="/static/time.js"></script>
 {% endblock %}
