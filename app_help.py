@@ -1,5 +1,6 @@
 import sqlite3
 from flask import redirect, render_template, session
+from datetime import datetime
 
 
 def select_table(fileName: str):
@@ -112,7 +113,9 @@ def session_check(value: str):
     # if session name doesn't exist, redirect to login page
     if not tmp:
         return redirect("/login")
+    
+def get_time():
+    return {"current": datetime.strftime(datetime.now(), "%H:%M:%S")}
 
 if __name__ == "__main__":
-    account = select_table_where("data.db", "repp")
-    print(account)
+    print(select_table_like("data.db", "r"))

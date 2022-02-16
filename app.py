@@ -136,8 +136,14 @@ def search():
     if q:
         accounts = select_table_like("data.db", request.args.get("q"))
     else:
+        # empty search
         accounts = []
     return jsonify(accounts)
+
+@app.route("/time")
+def time():
+    time = get_time()
+    return jsonify(time)
 
 @app.route("/test")
 def test():
