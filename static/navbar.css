@@ -38,3 +38,11 @@ body {
 .navbarprofile {
     float: right;
 }
+
+.navbartime {
+    cursor: default;
+}
+
+.navbartime:hover {
+    background-color: #333333;
+}

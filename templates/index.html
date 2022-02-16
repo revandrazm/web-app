@@ -11,11 +11,20 @@
         <li class="navbarli navbaractive"><a href="/" class="navbara">Home</a></li>
         <li class="navbarli"><a href="/search" class="navbara">Search</a></li>
         <li class="navbarli"><a href="/settings" class="navbara">Settings</a></li>
+        <li class="navbarli navbara navbartime" id="time"></li>
         <li class="navbarli navbarprofile"><a href="/profile" class="navbara">{{username}}</a></li>
     </ul>
 
     <div class="divsettings">
+
         <button class="githubbutton"><a href="https://github.com/revandrazm/webApp" class="githubtext">GitHub Repo</a></button>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script src="/static/time.js"></script>
 
 {% endblock %}
