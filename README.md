@@ -8,7 +8,7 @@ simple web application with features. (wip)
 - Delete account
 - Rename account (wip)
 
-## Requirements
+### Requirements
 - Flask
 - Flask-Session
 - pysqlite3
