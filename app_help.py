@@ -126,10 +126,11 @@ def rename_check(sessionUsername: str, current_username: str, password1: str, pa
         return render_template("rename.html", errorMessage="Account doesn't exist")
         
 def exist_check(username: str, password: str):
+    """Check if an account exist; return True if exist"""
     with sqlite3.connect("data.db") as conn:
         cursor = conn.cursor()
         cursor.execute("""SELECT EXISTS(SELECT 1 FROM accounts WHERE username = ? AND password = ?)""", (username, password,))
-        return cursor.fetchone()
+        return cursor.fetchone()[0] == 1
 
 if __name__ == "__main__":
     print(exist_check("repp", "password"))
