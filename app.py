@@ -22,6 +22,7 @@ def index():
     if check:
         return check
     # render home page
+    return redirect("/rename")
     return render_template("index.html", username=session["username"], link=link)
 
 @app.route("/register", methods=["GET", "POST"])
@@ -116,6 +117,26 @@ def profile():
     if check:
         return check
     return render_template("profile.html", username=session.get("username"))
+
+@app.route("/rename", methods=["GET", "POST"])
+def rename():
+    check = session_check("username")
+    if check:
+        return check
+    if request.method == "POST":
+        sessionUsername = session.get("username")
+        current_username = request.form.get("current_username")
+        new_username = request.form.get("new_username")
+        password1 = request.form.get("password1")
+        password2 = request.form.get("password2")
+        
+        print(sessionUsername, current_username, new_username, password1, password2)
+        error = rename_check(sessionUsername, current_username, new_username, password1, password2)
+        if error:
+            return error
+        
+        print(f"changed {current_username} into {new_username}")
+    return render_template("rename.html")
 
 
 # functions & misc

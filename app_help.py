@@ -123,21 +123,41 @@ def rename_check(sessionUsername: str, current_username: str, new_username: str,
     """Check for rename"""
     
     if sessionUsername != current_username:
+        print("sessionUsername != current_username")
         return render_template("rename.html", errorMessage="Invalid username")
     
     if current_username == new_username:
+        print("current_username == new_username")
         return render_template("rename.html", errorMessage="New username cannot be the same as current username")
     
     if password1 != password2:
+        print("password1 != password2")
         return render_template("rename.html", errorMessage="Both password must match")
     
-    if (not password1 or not password2) or (password1 == ' ' or password2 == ' '):
+    if (not password1 or not password2) or (password1.isspace() or password2.isspace()):
+        print("(not password1 or not password2) or (password1.isspace() or password2.isspace()")
         return render_template("rename.html", errorMessage="password cannot be blank")
     
-    if exist_check(current_username, password1) == False:
+    if account_exist_check(current_username, password1) == False:
+        print("exist_check(current_username, password1) == False")
         return render_template("rename.html", errorMessage="Account doesn't exist")
+    
+    if (not new_username) or (new_username.isspace()):
+        print("(not new_username) or (new_username.isspace())")
+        return render_template("rename.html", errorMessage="Invalid new username")
+    
+    if username_exist_check(new_username) == True:
+        return render_template("rename.html", errorMessage="username is already taken")
+
         
-def exist_check(username: str, password: str):
+def username_exist_check(username: str):
+    """Check if an username exist; return True if exist"""
+    with sqlite3.connect("data.db") as conn:
+        cursor = conn.cursor()
+        cursor.execute("""SELECT EXISTS(SELECT 1 FROM accounts WHERE username = ?)""", (username,))
+        return cursor.fetchone()[0] == 1
+    
+def account_exist_check(username: str, password: str):
     """Check if an account exist; return True if exist"""
     with sqlite3.connect("data.db") as conn:
         cursor = conn.cursor()
@@ -145,4 +165,5 @@ def exist_check(username: str, password: str):
         return cursor.fetchone()[0] == 1
 
 if __name__ == "__main__":
-    print(exist_check("repp", "password"))
+    print(username_exist_check("repp"))
+    print(account_exist_check("repp", "password"))
