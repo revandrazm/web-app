@@ -112,6 +112,12 @@ def session_check(value: str):
     # if session name doesn't exist, redirect to login page
     if not tmp:
         return redirect("/login")
+        
+def exist_check(username: str, password: str):
+    with sqlite3.connect("data.db") as conn:
+        cursor = conn.cursor()
+        cursor.execute("""SELECT EXISTS(SELECT 1 FROM accounts WHERE username = ? AND password = ?)""", (username, password,))
+        return cursor.fetchone()
 
 if __name__ == "__main__":
-    print(select_table_like("data.db", "r"))
+    print(exist_check("repp", "password"))
