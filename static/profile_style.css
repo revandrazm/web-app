@@ -2,7 +2,7 @@
     border-radius: 5px;
     background-color: #f2f2f2;
     margin: auto;
-    width: 50%;
+    width: auto;
     padding: 30px;
 }
 
@@ -10,7 +10,7 @@
     text-align: center;
     color: white;
     background-color: #c72c21;
-    width: 11%;
+    width: 7%;
     padding: 10px;
     display: block;
     border-radius: 4px;
@@ -26,7 +26,7 @@
 .deletebutton {
     text-align: center;
     background-color: #c72c21;
-    width: 21%;
+    width: 12%;
     padding: 10px;
     display: block;
     border-radius: 4px;
