@@ -127,29 +127,29 @@ def rename_check(sessionUsername: str, current_username: str, new_username: str,
     if sessionUsername != current_username:
         return render_template("rename.html", errorMessage="Invalid username")
     
+    # make sure new username is not blank
+    if (not new_username) or (new_username.isspace()):
+        return render_template("rename.html", errorMessage="Invalid new username")
+    
     # make sure new username is different than current username
     if current_username == new_username:
         return render_template("rename.html", errorMessage="New username cannot be the same as current username")
     
-    # make sure both password is matching
-    if password1 != password2:
-        return render_template("rename.html", errorMessage="Both password must match")
+    # make sure new username is unique
+    if username_exist_check(new_username) == True:
+        return render_template("rename.html", errorMessage="username is already taken")
     
     # make sure password is not blank
     if (not password1 or not password2) or (password1.isspace() or password2.isspace()):
         return render_template("rename.html", errorMessage="password cannot be blank")
     
-    # make sure username and account exist in database
+    # make sure both password is matching
+    if password1 != password2:
+        return render_template("rename.html", errorMessage="Both password must match")
+    
+    # make sure account exist in database
     if account_exist_check(current_username, password1) == False:
         return render_template("rename.html", errorMessage="Account doesn't exist")
-    
-    # make sure new username is not blank
-    if (not new_username) or (new_username.isspace()):
-        return render_template("rename.html", errorMessage="Invalid new username")
-    
-    # make sure username is unique
-    if username_exist_check(new_username) == True:
-        return render_template("rename.html", errorMessage="username is already taken")
 
         
 def username_exist_check(username: str):
