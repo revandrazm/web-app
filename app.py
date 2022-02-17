@@ -140,11 +140,6 @@ def output():
         accounts = []
     return jsonify(accounts)
 
-@app.route("/time")
-def time():
-    time = get_time()
-    return jsonify(time)
-
 @app.route("/test")
 def test():
     return render_template("test.html")
