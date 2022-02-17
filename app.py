@@ -102,12 +102,12 @@ def search():
         return check
     return render_template("search.html", username=session.get("username"))
 
-@app.route("/settings")
-def settings():
+@app.route("/about")
+def about():
     check = session_check("username")
     if check:
         return check
-    return render_template("settings.html", username=session.get("username"))
+    return render_template("about.html", username=session.get("username"))
 
 
 @app.route("/profile")
