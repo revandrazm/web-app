@@ -125,32 +125,26 @@ def rename_check(sessionUsername: str, current_username: str, new_username: str,
     
     # prevent user from changing other account username
     if sessionUsername != current_username:
-        print("sessionUsername != current_username")
         return render_template("rename.html", errorMessage="Invalid username")
     
     # make sure new username is different than current username
     if current_username == new_username:
-        print("current_username == new_username")
         return render_template("rename.html", errorMessage="New username cannot be the same as current username")
     
     # make sure both password is matching
     if password1 != password2:
-        print("password1 != password2")
         return render_template("rename.html", errorMessage="Both password must match")
     
     # make sure password is not blank
     if (not password1 or not password2) or (password1.isspace() or password2.isspace()):
-        print("(not password1 or not password2) or (password1.isspace() or password2.isspace()")
         return render_template("rename.html", errorMessage="password cannot be blank")
     
     # make sure username and account exist in database
     if account_exist_check(current_username, password1) == False:
-        print("exist_check(current_username, password1) == False")
         return render_template("rename.html", errorMessage="Account doesn't exist")
     
     # make sure new username is not blank
     if (not new_username) or (new_username.isspace()):
-        print("(not new_username) or (new_username.isspace())")
         return render_template("rename.html", errorMessage="Invalid new username")
     
     # make sure username is unique
