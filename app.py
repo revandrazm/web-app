@@ -1,6 +1,6 @@
 from flask import Flask, redirect, render_template, request, session, jsonify
 from flask_session import Session
-from app_help import *
+from app_tools import *
 import random
 
 # for data link
@@ -18,9 +18,9 @@ Session(app)
 
 @app.route("/")
 def index():
-    check = session_check("username")
-    if check:
-        return check
+    error = session_check("username")
+    if error:
+        return error
     # render home page
     return render_template("index.html", username=session["username"], link=link)
 
@@ -34,14 +34,13 @@ def register():
         password2 = request.form.get("password2")
         
         # check all register condition
-        error = register_check("data.db", username, password1, password2)
+        error = register_check(username, password1, password2)
         # return error if found
         if error:
             return error
         
         # add account to database
         insert_row("data.db", username, password1)
-        
         # redirect to login page if succesful
         return redirect("/login")
     
@@ -57,11 +56,13 @@ def login():
         password = request.form.get("password")
         
         # check all login condition
-        error =  login_check("data.db", username.lower(), password)
+        error =  login_check(username.lower(), password)
         # return error if found
         if error:
             return error
-        
+
+        # remember session username
+        session["username"] = username
         # redirect to index page if succesful
         return redirect("/")
     
@@ -77,11 +78,10 @@ def delete():
         # get values from form
         sessionUsername = session.get("username")
         username = request.form.get("username")
-        password1 = request.form.get("password1")
-        password2 = request.form.get("password2")
+        password = request.form.get("password1")
         
         # check for error in form
-        error = delete_check("data.db", sessionUsername, username, password1, password2)
+        error = delete_check(sessionUsername, username, password)
         # return error if found
         if error:
             return error
@@ -129,12 +129,15 @@ def rename():
         password1 = request.form.get("password1")
         password2 = request.form.get("password2")
         
-        print(sessionUsername, current_username, new_username, password1, password2)
+        # check error
         error = rename_check(sessionUsername, current_username, new_username, password1, password2)
+        # return error if found
         if error:
             return error
         
+        # change username
         update_row("data.db", current_username, new_username)
+        # change session uesrname
         session["username"] = new_username
         return redirect("/")
     return render_template("rename.html")

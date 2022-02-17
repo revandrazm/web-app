@@ -1,5 +1,5 @@
-let input = document.querySelector("input");
-
-input.addEventListener("keydown", function() {
-    document.querySelector("#error").innerHTML = "";
+document.querySelectorAll("input").forEach(item => {
+    item.addEventListener("keydown", function() {
+        document.querySelector("#error").innerHTML = "";
+    });
 });
