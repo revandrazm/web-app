@@ -1,5 +1,9 @@
 {% extends "layout_navbar.html" %}
 
+{% block head %}
+    <link href="/static/about_style.css" rel="stylesheet">
+{% endblock %}
+
 {% block body %}
     <ul class="navbarul">
         <li class="navbarli"><a href="/" class="navbara">Home</a></li>
@@ -8,4 +12,10 @@
         <li class="navbarli navbara navbartime" id="time"></li>
         <li class="navbarli navbarprofile"><a href="/profile" class="navbara">{{username}}</a></li>
     </ul>
+
+    <div class="divsettings">
+
+        <button class="githubbutton"><a href="https://github.com/revandrazm/webApp" class="githubtext">GitHub Repo</a></button>
+        
+    </div>
 {% endblock %}
