@@ -117,6 +117,28 @@ def profile():
         return check
     return render_template("profile.html", username=session.get("username"))
 
+@app.route("/rename", methods=["GET", "POST"])
+def rename():
+    check = session_check("username")
+    if check:
+        return check
+    if request.method == "POST":
+        sessionUsername = session.get("username")
+        current_username = request.form.get("current_username")
+        new_username = request.form.get("new_username")
+        password1 = request.form.get("password1")
+        password2 = request.form.get("password2")
+        
+        print(sessionUsername, current_username, new_username, password1, password2)
+        error = rename_check(sessionUsername, current_username, new_username, password1, password2)
+        if error:
+            return error
+        
+        update_row("data.db", current_username, new_username)
+        session["username"] = new_username
+        return redirect("/")
+    return render_template("rename.html")
+
 
 # functions & misc
 @app.route(f"/{link}")

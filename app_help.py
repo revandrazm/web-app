@@ -112,6 +112,60 @@ def session_check(value: str):
     # if session name doesn't exist, redirect to login page
     if not tmp:
         return redirect("/login")
+    
+def update_row(fileName: str, current_username: str, new_username: str):
+    """Change old username to new username in table accounts"""
+    with sqlite3.connect(fileName) as conn:
+        cursor = conn.cursor()
+        # update account username
+        cursor.execute("""UPDATE accounts SET username = ? WHERE username = ?""", (new_username, current_username,))
+        
+def rename_check(sessionUsername: str, current_username: str, new_username: str, password1: str, password2: str):
+    """Check for rename"""
+    
+    # prevent user from changing other account username
+    if sessionUsername != current_username:
+        return render_template("rename.html", errorMessage="Invalid username")
+    
+    # make sure new username is not blank
+    if (not new_username) or (new_username.isspace()):
+        return render_template("rename.html", errorMessage="Invalid new username")
+    
+    # make sure new username is different than current username
+    if current_username == new_username:
+        return render_template("rename.html", errorMessage="New username cannot be the same as current username")
+    
+    # make sure new username is unique
+    if username_exist_check(new_username) == True:
+        return render_template("rename.html", errorMessage="username is already taken")
+    
+    # make sure password is not blank
+    if (not password1 or not password2) or (password1.isspace() or password2.isspace()):
+        return render_template("rename.html", errorMessage="password cannot be blank")
+    
+    # make sure both password is matching
+    if password1 != password2:
+        return render_template("rename.html", errorMessage="Both password must match")
+    
+    # make sure account exist in database
+    if account_exist_check(current_username, password1) == False:
+        return render_template("rename.html", errorMessage="Account doesn't exist")
+
+        
+def username_exist_check(username: str):
+    """Check if an username exist; return True if exist"""
+    with sqlite3.connect("data.db") as conn:
+        cursor = conn.cursor()
+        cursor.execute("""SELECT EXISTS(SELECT 1 FROM accounts WHERE username = ?)""", (username,))
+        return cursor.fetchone()[0] == 1
+    
+def account_exist_check(username: str, password: str):
+    """Check if an account exist; return True if exist"""
+    with sqlite3.connect("data.db") as conn:
+        cursor = conn.cursor()
+        cursor.execute("""SELECT EXISTS(SELECT 1 FROM accounts WHERE username = ? AND password = ?)""", (username, password,))
+        return cursor.fetchone()[0] == 1
 
 if __name__ == "__main__":
-    print(select_table_like("data.db", "r"))
+    print(username_exist_check("repp"))
+    print(account_exist_check("repp", "password"))

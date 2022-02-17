@@ -6,6 +6,23 @@
     padding: 30px;
 }
 
+.renamebutton {
+    text-align: center;
+    color: white;
+    background-color: #1d80be;
+    width: 8%;
+    padding: 10px;
+    display: block;
+    border-radius: 4px;
+    box-sizing: border-box;
+    border: none;
+}
+
+.renamebutton:hover {
+    background-color: #16608e;
+    cursor: pointer;
+}
+
 .logoutbutton {
     text-align: center;
     color: white;
