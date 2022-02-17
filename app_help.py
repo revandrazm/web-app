@@ -36,12 +36,6 @@ def insert_row(fileName: str, username: str, password: str):
         cursor = conn.cursor()
         cursor.execute("""INSERT INTO accounts (username, password) VALUES (?, ?)""", (username, password))
         
-# def get_id(fileName: str, username: int):
-#     with sqlite3.connect(fileName) as conn:
-#         cursor = conn.cursor()
-#         id = cursor.execute("""SELECT id FROM accounts WHERE username=?""", (username,))
-#     return id
-        
 def delete_row(fileName: str, username: str):
     """Delete a row into table accounts"""
     with sqlite3.connect(fileName) as conn:
