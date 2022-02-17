@@ -131,7 +131,7 @@ def rename_check(sessionUsername: str, current_username: str, password1: str, pa
     if (not password1 or not password2) or (password1 == ' ' or password2 == ' '):
         return render_template("rename.html", errorMessage="password cannot be blank")
     
-    if exist_check(current_username, password1) == 0:
+    if exist_check(current_username, password1) == False:
         return render_template("rename.html", errorMessage="Account doesn't exist")
         
 def exist_check(username: str, password: str):
