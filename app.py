@@ -22,7 +22,6 @@ def index():
     if check:
         return check
     # render home page
-    return redirect("/rename")
     return render_template("index.html", username=session["username"], link=link)
 
 @app.route("/register", methods=["GET", "POST"])
@@ -135,7 +134,9 @@ def rename():
         if error:
             return error
         
-        print(f"changed {current_username} into {new_username}")
+        update_row("data.db", current_username, new_username)
+        session["username"] = new_username
+        return redirect("/")
     return render_template("rename.html")
 
 
