@@ -113,6 +113,18 @@ def session_check(value: str):
     if not tmp:
         return redirect("/login")
         
+def rename_check(sessionUsername: str, current_username: str, password1: str, password2: str):
+    """Check for rename"""
+    
+    if sessionUsername != current_username:
+        return render_template("rename.html", errorMessage="Invalid username")
+    
+    if password1 != password2:
+        return render_template("rename.html", errorMessage="Both password must match")
+    
+    if exist_check(current_username, password1) == 0:
+        return render_template("rename.html", errorMessage="Account doesn't exist")
+        
 def exist_check(username: str, password: str):
     with sqlite3.connect("data.db") as conn:
         cursor = conn.cursor()
