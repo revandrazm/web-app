@@ -1,7 +1,7 @@
 {% extends "layout_navbar.html" %}
 
 {% block head %}
-    <link href="/static/about_style.css" rel="stylesheet">
+    <link href="/static/about/about_style.css" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
@@ -15,7 +15,10 @@
 
     <div class="divsettings">
 
-        <button class="githubbutton"><a href="https://github.com/revandrazm/webApp" class="githubtext">GitHub Repo</a></button>
-        
+        <button class="githubbutton buttontext" onclick="openNewTab('https://github.com/revandrazm/webApp')">GitHub Repo</button>
+        <p></p>
+        <button class="githubbutton buttontext" onclick="openNewTab('https://instagram.com/revandrazm/')">Instagram</button>
     </div>
+
+    <script src="/static/about/about_script.js"></script>
 {% endblock %}
