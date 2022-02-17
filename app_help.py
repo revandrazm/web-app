@@ -119,11 +119,14 @@ def update_row(fileName: str, current_username: str, new_username: str):
         cursor = conn.cursor()
         cursor.execute("""UPDATE accounts SET username = ? WHERE username = ?""", (new_username, current_username,))
         
-def rename_check(sessionUsername: str, current_username: str, password1: str, password2: str):
+def rename_check(sessionUsername: str, current_username: str, new_username: str, password1: str, password2: str):
     """Check for rename"""
     
     if sessionUsername != current_username:
         return render_template("rename.html", errorMessage="Invalid username")
+    
+    if current_username == new_username:
+        return render_template("rename.html", errorMessage="New username cannot be the same as current username")
     
     if password1 != password2:
         return render_template("rename.html", errorMessage="Both password must match")
