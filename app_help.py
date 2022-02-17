@@ -112,6 +112,12 @@ def session_check(value: str):
     # if session name doesn't exist, redirect to login page
     if not tmp:
         return redirect("/login")
+    
+def update_row(fileName: str, current_username: str, new_username: str):
+    """Change old username to new username in table accounts"""
+    with sqlite3.connect(fileName) as conn:
+        cursor = conn.cursor()
+        cursor.execute("""UPDATE accounts SET username = ? WHERE username = ?""", (new_username, current_username,))
         
 def rename_check(sessionUsername: str, current_username: str, password1: str, password2: str):
     """Check for rename"""
