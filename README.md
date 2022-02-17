@@ -6,7 +6,8 @@ simple web application with features. (wip)
 - Login
 - Search other accounts
 - Delete account
-- Rename account (wip)
+- Rename account
+- Change password (wip)
 
 ### Requirements
 - Flask
