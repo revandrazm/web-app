@@ -4,6 +4,7 @@ simple web application with features. (wip)
 ## Features
 - Register
 - Login
+- Hashed password
 - Search other accounts
 - Delete account
 - Rename account
