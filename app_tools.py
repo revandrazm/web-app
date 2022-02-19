@@ -143,7 +143,7 @@ def rename_check(sessionUsername: str, current_username: str, new_username: str,
         return render_template("rename.html", errorMessage="Both password must match")
     
     # make sure account exist in database
-    if account_exist_check(current_username, password1) == False:
+    if account_exist_check(current_username, password1.encode("utf-8")) == False:
         return render_template("rename.html", errorMessage="Account doesn't exist")
     
 def hash_password(password):
