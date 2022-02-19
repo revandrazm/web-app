@@ -1,7 +1,7 @@
-from flask import Flask, redirect, render_template, request, session, jsonify
-from flask_session import Session
-from app_tools import *
 import random
+from app_tools import *
+from flask_session import Session
+from flask import Flask, redirect, render_template, request, session, jsonify
 
 # for data link
 opt = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_@-+"
@@ -40,6 +40,7 @@ def register():
             return error
         
         # add account to database
+        password1 = hash_password(password1.encode("utf-8"))
         insert_row("data.db", username, password1)
         # redirect to login page if succesful
         return redirect("/login")
@@ -53,7 +54,7 @@ def login():
         
         # get values from form
         username = request.form.get("username")
-        password = request.form.get("password")
+        password = request.form.get("password").encode("utf-8")
         
         # check all login condition
         error =  login_check(username.lower(), password)

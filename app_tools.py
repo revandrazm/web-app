@@ -1,6 +1,6 @@
 import sqlite3
+import bcrypt
 from flask import redirect, render_template, session
-from datetime import datetime
 
 
 def select_table(fileName: str):
@@ -17,7 +17,7 @@ def select_table_like(fileName: str, username: str):
     with sqlite3.connect(fileName) as conn:
         conn.row_factory = sqlite3.Row
         cursor = conn.cursor()
-        cursor.execute("SELECT * FROM accounts WHERE username LIKE ?", ("%" + username + "%",))
+        cursor.execute("SELECT username FROM accounts WHERE username LIKE ?", ("%" + username + "%",))
         result = [dict(row) for row in cursor.fetchall()]
         return result
     
@@ -36,13 +36,16 @@ def username_exist_check(username: str):
         cursor = conn.cursor()
         cursor.execute("""SELECT EXISTS(SELECT 1 FROM accounts WHERE username = ?)""", (username,))
         return cursor.fetchone()[0] == 1
-    
+
 def account_exist_check(username: str, password: str):
     """Check if an account exist; return True if exist"""
-    with sqlite3.connect("data.db") as conn:
-        cursor = conn.cursor()
-        cursor.execute("""SELECT EXISTS(SELECT 1 FROM accounts WHERE username = ? AND password = ?)""", (username, password,))
-        return cursor.fetchone()[0] == 1
+    try:
+        with sqlite3.connect("data.db") as conn:
+            cursor = conn.cursor()
+            cursor.execute("""SELECT password FROM accounts WHERE username = ?""", (username, ))
+            return bcrypt.checkpw(password, cursor.fetchone()[0])
+    except Exception:
+        return False
 
 def insert_row(fileName: str, username: str, password: str):
     """Insert a row into table accounts"""
@@ -94,7 +97,7 @@ def delete_check(sessionUsername: str, username: str, password1: str):
         return render_template("delete.html", errorMessage=errorMessage)
     
     # check if user entered correct username and password
-    if account_exist_check(username, password1) == False:
+    if account_exist_check(username, password1.encode("utf-8")) == False:
         return render_template("delete.html", errorMessage=errorMessage)
     
 def session_check(value: str):
@@ -140,9 +143,12 @@ def rename_check(sessionUsername: str, current_username: str, new_username: str,
         return render_template("rename.html", errorMessage="Both password must match")
     
     # make sure account exist in database
-    if account_exist_check(current_username, password1) == False:
+    if account_exist_check(current_username, password1.encode("utf-8")) == False:
         return render_template("rename.html", errorMessage="Account doesn't exist")
+    
+def hash_password(password):
+    """Hash a given password"""
+    return bcrypt.hashpw(password, bcrypt.gensalt())
 
 if __name__ == "__main__":
-    print(username_exist_check("repp"))
-    print(account_exist_check("repp", "password"))
+    print(account_exist_check("repp", b"password1"))
