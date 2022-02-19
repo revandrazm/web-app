@@ -56,7 +56,6 @@ def login():
         try:
             username = request.form.get("username")
             password = request.form.get("password").encode("utf-8")
-            remember = request.form.get("remember")
         except AttributeError:
             return render_template("login_page.html", errorMessage="invalid username/password")
         
@@ -67,8 +66,7 @@ def login():
             return error
 
         # remember session username
-        if remember:
-            session["username"] = username
+        session["username"] = username
         # redirect to index page if succesful
         return redirect("/")
     
