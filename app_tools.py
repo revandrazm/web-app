@@ -1,7 +1,6 @@
 import sqlite3
 import bcrypt
 from flask import redirect, render_template, session
-from datetime import datetime
 
 
 def select_table(fileName: str):
@@ -37,13 +36,13 @@ def username_exist_check(username: str):
         cursor = conn.cursor()
         cursor.execute("""SELECT EXISTS(SELECT 1 FROM accounts WHERE username = ?)""", (username,))
         return cursor.fetchone()[0] == 1
-    
+
 def account_exist_check(username: str, password: str):
     """Check if an account exist; return True if exist"""
     with sqlite3.connect("data.db") as conn:
         cursor = conn.cursor()
-        cursor.execute("""SELECT EXISTS(SELECT 1 FROM accounts WHERE username = ? AND password = ?)""", (username, password,))
-        return cursor.fetchone()[0] == 1
+        cursor.execute("""SELECT password FROM accounts WHERE username = ?""", (username, ))
+        return bcrypt.checkpw(password, cursor.fetchone()[0])
 
 def insert_row(fileName: str, username: str, password: str):
     """Insert a row into table accounts"""
@@ -148,5 +147,4 @@ def hash_password(password):
     return bcrypt.hashpw(password, bcrypt.gensalt())
 
 if __name__ == "__main__":
-    print(username_exist_check("repp"))
-    print(account_exist_check("repp", "password"))
+    print(account_exist_check("repp", b"password1"))
