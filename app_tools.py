@@ -61,6 +61,9 @@ def delete_row(fileName: str, username: str):
         
 def login_check(username: str, password: str):
     """Login check"""
+    if not password:
+        return render_template("login_page.html", errorMessage="invalid username/password")
+    
     if account_exist_check(username, password) == False:
         return render_template("login_page.html", errorMessage="invalid username/password")
 
