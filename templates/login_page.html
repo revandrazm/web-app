@@ -10,20 +10,23 @@
             <form action="/login" method="post">
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="username" aria-describedby="username" placeholder="Enter username..." autocomplete="off">
+                    <input type="text" class="form-control" name="username" aria-describedby="username" placeholder="Enter username..." autocomplete="off">
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" aria-describedby="password" placeholder="Enter password..." autocomplete="off">
+                    <input type="password" class="form-control" name="password" aria-describedby="password" placeholder="Enter password..." autocomplete="off">
                 </div>
                 <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="remember">
-                    <label class="form-check-label" for="remember">Remember me</label>
+                    <input type="checkbox" class="form-check-input" name="remember">
+                    <label class="form-check-label" for="remember" style="font-size: small;">Remember me</label>
                 </div>
                 <div class="mb-3">
                     <p class="error-message">{{errorMessage}}</p>
                 </div>
                 <button type="submit" class="btn btn-primary">Login</button>
+                <div class="register-text">
+                    <p>Don't have an account? <a href="/register" style="text-decoration: none">Register</a></p>
+                </div>
             </form>
         </div>
     </div>
