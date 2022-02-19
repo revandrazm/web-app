@@ -147,6 +147,7 @@ def rename_check(sessionUsername: str, current_username: str, new_username: str,
         return render_template("rename.html", errorMessage="Account doesn't exist")
     
 def hash_password(password):
+    """Hash a given password"""
     return bcrypt.hashpw(password, bcrypt.gensalt())
 
 if __name__ == "__main__":
