@@ -97,7 +97,7 @@ def delete_check(sessionUsername: str, username: str, password1: str):
         return render_template("delete.html", errorMessage=errorMessage)
     
     # check if user entered correct username and password
-    if account_exist_check(username, password1) == False:
+    if account_exist_check(username, password1.encode("utf-8")) == False:
         return render_template("delete.html", errorMessage=errorMessage)
     
 def session_check(value: str):
