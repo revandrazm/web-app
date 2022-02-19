@@ -30,8 +30,8 @@ def register():
         
         # get values from form
         username = request.form.get("username")
-        password1 = request.form.get("password1").encode("utf-8")
-        password2 = request.form.get("password2").encode("utf-8")
+        password1 = request.form.get("password1")
+        password2 = request.form.get("password2")
         
         # check all register condition
         error = register_check(username, password1, password2)
@@ -40,7 +40,7 @@ def register():
             return error
         
         # add account to database
-        password1 = hash_password(password1)
+        password1 = hash_password(password1.encode("utf-8"))
         insert_row("data.db", username, password1)
         # redirect to login page if succesful
         return redirect("/login")
