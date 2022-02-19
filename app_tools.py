@@ -1,4 +1,5 @@
 import sqlite3
+import bcrypt
 from flask import redirect, render_template, session
 from datetime import datetime
 
@@ -142,6 +143,9 @@ def rename_check(sessionUsername: str, current_username: str, new_username: str,
     # make sure account exist in database
     if account_exist_check(current_username, password1) == False:
         return render_template("rename.html", errorMessage="Account doesn't exist")
+    
+def hash_password(password):
+    return bcrypt.hashpw(password, bcrypt.gensalt())
 
 if __name__ == "__main__":
     print(username_exist_check("repp"))
