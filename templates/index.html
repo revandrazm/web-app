@@ -6,12 +6,19 @@
 
 {% block body %}
 
-    <ul class="navbarul">
-        <li class="navbarli navbaractive"><a href="/" class="navbara">Home</a></li>
-        <li class="navbarli"><a href="/search" class="navbara">Search</a></li>
-        <li class="navbarli"><a href="/about" class="navbara">About</a></li>
-        <li class="navbarli navbara navbartime" id="time"></li>
-        <li class="navbarli navbarprofile"><a href="/profile" class="navbara">{{username}}</a></li>
-    </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="navbar-nav mr-auto">
+                <li><a class="nav-item nav-link active" href="#">Home</a></li>
+                <li><a class="nav-item nav-link" href="/about">About</a></li>
+                <li><a class="nav-item nav-link" href="/search">Search</a></li>
+            </ul>
+            <ul class="navbar-nav mx-auto">
+            <li><a class="nav-item nav-link" id="time"></a>
+            </ul>
+
+            <a class="nav-item nav-link" href="/profile">{{username}}</a>
+        </div>
+    </nav>
 
 {% endblock %}
