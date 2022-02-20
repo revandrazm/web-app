@@ -53,11 +53,9 @@ def login():
     if request.method == "POST":
         
         # get values from form
-        try:
-            username = request.form.get("username")
-            password = request.form.get("password").encode("utf-8")
-        except AttributeError:
-            return render_template("login_page.html", errorMessage="invalid username/password")
+        username = request.form.get("username")
+        password = request.form.get("password").encode("utf-8")
+        return render_template("login_page.html", errorMessage="invalid username/password")
         
         # check all login condition
         error =  login_check(username.lower(), password)
