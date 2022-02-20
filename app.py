@@ -80,9 +80,12 @@ def delete():
         return check
     if request.method == "POST":
         # get values from form
-        sessionUsername = session.get("username")
-        username = request.form.get("username")
-        password = request.form.get("password1")
+        try:
+            sessionUsername = session.get("username")
+            username = request.form.get("username")
+            password = request.form.get("password").encode("utf-8")
+        except AttributeError:
+            return render_template("delete.html", errorMessage="Invalid username/password")
         
         # check for error in form
         error = delete_check(sessionUsername, username, password)
