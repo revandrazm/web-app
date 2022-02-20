@@ -1,0 +1,5 @@
+static/test.js
+__pycache__/
+flask_session/
+todo
+test.html
