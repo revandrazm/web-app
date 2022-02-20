@@ -6,25 +6,32 @@
 
 {% block body %}
 
-    <!-- form -->
-    <div class="divrename">
-        <form action="/rename" method="post" autocomplete="off" onclick="return true">
-            <label for="current_username">Current Username</label>
-            <input name="current_username" type="text" class="username" placeholder="Username" autofocus>
-
-            <label for="new_username">New Username</label>
-            <input name="new_username" type="text" class="username" placeholder="New Username">
-
-            <label for="password1">Password</label>
-            <input name="password1" type="password" class="password" placeholder="Password">
-
-            <label for="password2">Re-Enter Password</label>
-            <input name="password2" type="password" class="password" placeholder="Re-Enter Password">
-            
-            <p class="error" id="error">{{errorMessage}}</p>
-            <button id="delete" class="button">Rename Account</button>
-        </form>
+    <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+        <div class="container bgcolor">
+            <form action="/rename" method="post">
+                <div class="mb-3">
+                    <label for="current_username" class="form-label">Current Username</label>
+                    <input type="text" class="form-control" name="current_username" aria-describedby="current_username" placeholder="Enter current username..." autocomplete="off">
+                </div>
+                <div class="mb-3">
+                    <label for="new_username" class="form-label">New Username</label>
+                    <input type="text" class="form-control" name="new_username" aria-describedby="new_username" placeholder="Enter new username..." autocomplete="off">
+                </div>
+                <div class="mb-3">
+                    <label for="password1" class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password1" aria-describedby="password1" placeholder="Enter password..." autocomplete="off">
+                </div>
+                <div class="mb-3">
+                    <label for="password2" class="form-label">Re-Enter Password</label>
+                    <input type="password" class="form-control" name="password2" aria-describedby="password2" placeholder="Re-Enter password..." autocomplete="off">
+                </div>
+                <div class="mb-3">
+                    <p class="error-message" id="error-message"><br>{{errorMessage}}</p>
+                </div>
+                <button type="submit" class="btn btn-primary">Change Username</button>
+            </form>
+        </div>
     </div>
-
+    
     <script src="/static/script.js"></script>
 {% endblock %}
