@@ -44,13 +44,10 @@ def username_exist_check(username: str):
 def account_exist_check(username: str, password: str):
     """Check if an account exist; return True if exist"""
     
-    try:
-        with sqlite3.connect("data.db") as conn:
-            cursor = conn.cursor()
-            cursor.execute("""SELECT password FROM accounts WHERE username = ?""", (username, ))
-            return bcrypt.checkpw(password, cursor.fetchone()[0])
-    except Exception:
-        return False
+    with sqlite3.connect("data.db") as conn:
+        cursor = conn.cursor()
+        cursor.execute("""SELECT password FROM accounts WHERE username = ?""", (username, ))
+        return bcrypt.checkpw(password, cursor.fetchone()[0])
 
 def insert_row(fileName: str, username: str, password: str):
     """Insert a row into table accounts"""
