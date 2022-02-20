@@ -1,0 +1,2 @@
+git push origin <new branch>:master
+git push -d origin <branch name>

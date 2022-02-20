@@ -12,4 +12,8 @@ Archive:
         - current username @done
         - new username @done
         - password @done
+<<<<<<< HEAD
         - re-enter password @done
+=======
+        - re-enter password @done
+>>>>>>> d0c4d617ea0baae1d4a33b947dc903123ce396ca
