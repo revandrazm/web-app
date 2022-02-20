@@ -1,48 +1,7 @@
-body {
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-.navbarul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333333;
-    border-radius: 4px;
-}
-
-.navbarli {
-    float: left;
-}
-
-.navbarli:hover {
-    background-color: #292929;
-}
-
-.navbara {
-    display: block;
-    color: #FFFFFF;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-.navbaractive {
-    background-color: #04AA6D;
-}
-
-.navbaractive:hover {
-    background-color: #038857;
-}
-
-.navbarprofile {
-    float: right;
-}
-
-.navbartime {
-    cursor: default;
-}
-
-.navbartime:hover {
-    background-color: #333333;
+@media (min-width: 768px) {
+    .abs-center-x {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
