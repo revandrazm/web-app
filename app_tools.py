@@ -5,6 +5,7 @@ from flask import redirect, render_template, session
 
 def select_table(fileName: str):
     """Select all row from table accounts"""
+    
     with sqlite3.connect(fileName) as conn:
         conn.row_factory = sqlite3.Row
         cursor = conn.cursor()
@@ -14,6 +15,7 @@ def select_table(fileName: str):
     
 def select_table_like(fileName: str, username: str):
     """Select all row from table accounts with like"""
+    
     with sqlite3.connect(fileName) as conn:
         conn.row_factory = sqlite3.Row
         cursor = conn.cursor()
@@ -23,6 +25,7 @@ def select_table_like(fileName: str, username: str):
     
 def select_table_where(fileName: str, username: str):
     """Select all row from table accounts with where"""
+    
     with sqlite3.connect(fileName) as conn:
         conn.row_factory = sqlite3.Row
         cursor = conn.cursor()
@@ -32,6 +35,7 @@ def select_table_where(fileName: str, username: str):
     
 def username_exist_check(username: str):
     """Check if an username exist; return True if exist"""
+    
     with sqlite3.connect("data.db") as conn:
         cursor = conn.cursor()
         cursor.execute("""SELECT EXISTS(SELECT 1 FROM accounts WHERE username = ?)""", (username,))
@@ -39,6 +43,7 @@ def username_exist_check(username: str):
 
 def account_exist_check(username: str, password: str):
     """Check if an account exist; return True if exist"""
+    
     try:
         with sqlite3.connect("data.db") as conn:
             cursor = conn.cursor()
@@ -49,12 +54,14 @@ def account_exist_check(username: str, password: str):
 
 def insert_row(fileName: str, username: str, password: str):
     """Insert a row into table accounts"""
+    
     with sqlite3.connect(fileName) as conn:
         cursor = conn.cursor()
         cursor.execute("""INSERT INTO accounts (username, password) VALUES (?, ?)""", (username, password))
         
 def delete_row(fileName: str, username: str):
     """Delete a row into table accounts"""
+    
     with sqlite3.connect(fileName) as conn:
         cursor = conn.cursor()
         cursor.execute("""DELETE FROM accounts WHERE username = ?""", (username,))
@@ -103,6 +110,7 @@ def delete_check(sessionUsername: str, username: str, password1: str):
     
 def session_check(value: str):
     """Check for session value"""
+    
     # get session username
     val = session.get(value)
     # if session name doesn't exist, redirect to login page
@@ -111,6 +119,7 @@ def session_check(value: str):
     
 def update_row(fileName: str, current_username: str, new_username: str):
     """Change old username to new username in table accounts"""
+    
     with sqlite3.connect(fileName) as conn:
         cursor = conn.cursor()
         # update account username
@@ -149,6 +158,7 @@ def rename_check(sessionUsername: str, current_username: str, new_username: str,
     
 def hash_password(password):
     """Hash a given password"""
+    
     return bcrypt.hashpw(password, bcrypt.gensalt())
 
 if __name__ == "__main__":
