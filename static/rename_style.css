@@ -1,78 +1,13 @@
-body {
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-p {
-    font-size: large;
-    font-weight: bold;
-}
-
-.divrename {
+.bgcolor {
+    justify-content: center;
     border-radius: 5px;
-    background-color: #f2f2f2;
-    margin: auto;
-    width: 75%;
     padding: 30px;
+    background-color: #f2f2f2;
+    width: 60%;
 }
 
-.username {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 2px solid #cccccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.username:hover {
-    border: 2px solid #a3a3a3;
-}
-
-.username:focus {
-    outline: none !important;
-    border: 2px solid #525252;
-}
-
-.password {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 2px solid #cccccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.password:hover {
-    border: 2px solid #a3a3a3;
-}
-
-.password:focus {
-    outline: none !important;
-    border: 2px solid #525252;
-}
-
-.button {
-    text-align: center;
-    color: white;
-    background-color: #04AA6D;
-    width: 17%;
-    padding: 10px;
-    display: block;
-    border-radius: 4px;
-    box-sizing: border-box;
-    border: none;
-}
-
-.button:hover {
-    background-color: #049962;
-    cursor: pointer;
-}
-
-.error {
-    font-weight: normal;
+.error-message {
+    text-align: right;
     color: red;
     font-size: small;
-    text-align: right;
 }
