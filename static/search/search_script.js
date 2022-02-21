@@ -1,3 +1,4 @@
+// show search result
 let input = document.querySelector("input");
 input.addEventListener("keyup", function() {
     $.get("/output?q=" + input.value, function(accounts) {
