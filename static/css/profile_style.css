@@ -1,0 +1,57 @@
+.divprofile {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    margin: auto;
+    width: auto;
+    padding: 30px;
+}
+
+.renamebutton {
+    text-align: center;
+    color: white;
+    background-color: #1d80be;
+    width: 8%;
+    padding: 10px;
+    display: block;
+    border-radius: 4px;
+    box-sizing: border-box;
+    border: none;
+}
+
+.renamebutton:hover {
+    background-color: #16608e;
+    cursor: pointer;
+}
+
+.logoutbutton {
+    text-align: center;
+    color: white;
+    background-color: #c72c21;
+    width: 7%;
+    padding: 10px;
+    display: block;
+    border-radius: 4px;
+    box-sizing: border-box;
+    border: none;
+}
+
+.logoutbutton:hover {
+    background-color: #9f231a;
+    cursor: pointer;
+}
+
+.deletebutton {
+    text-align: center;
+    background-color: #c72c21;
+    width: 12%;
+    padding: 10px;
+    display: block;
+    border-radius: 4px;
+    box-sizing: border-box;
+    border: none;
+}
+
+.deletebutton:hover {
+    background-color: #9f231a;
+    cursor: pointer;
+}
