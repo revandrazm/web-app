@@ -13,3 +13,13 @@
     width: auto;
     padding: 30px;
 }
+
+.input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 2px solid #cccccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
