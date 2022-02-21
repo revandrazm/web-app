@@ -1,0 +1,15 @@
+@media (min-width: 768px) {
+    .abs-center-x {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+.div-bg {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    margin: auto;
+    width: auto;
+    padding: 30px;
+}
