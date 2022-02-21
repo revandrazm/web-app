@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link href="/static/style.css" rel="stylesheet">
         <link href="/static/navbar.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         {% block head %}{% endblock %}
     </head>
     <body>
@@ -16,5 +17,15 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="https://momentjs.com/downloads/moment.js"></script>
         <script src="/static/time.js"></script>
+        <script src="/static/social_link_script.js"></script>
     </body>
+    <footer>
+        <div class="fixed-bottom bg-dark p-2">
+            <!-- Instagram -->
+            <a class="btn btn-outline-light btn-floating m-1" onclick="openNewTab('https://instagram.com/revandrazm/')" role="button" style="cursor: pointer;"><i class="fab fa-instagram" style="color: white;"></i></a>
+    
+            <!-- Github -->
+            <a class="btn btn-outline-light btn-floating m-1" onclick="openNewTab('https://github.com/revandrazm/')" role="button" style="cursor: pointer;"><i class="fab fa-github" style="color: white;"></i></a>
+        </div>
+    </footer>
 </html>
