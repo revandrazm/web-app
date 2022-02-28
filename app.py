@@ -3,6 +3,9 @@ from app_tools import *
 from flask_session import Session
 from flask import Flask, redirect, render_template, request, session, jsonify
 
+# create data.db
+create_data()
+
 # for data link
 opt = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_@-+"
 link = "".join(random.sample(opt, 50))
@@ -174,4 +177,4 @@ def test():
     return render_template("test.html")
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
