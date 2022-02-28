@@ -1,7 +1,15 @@
 import sqlite3
 import bcrypt
+import os
 from flask import redirect, render_template, session
 
+
+def create_data():
+    if not os.path.exists("data.db"):
+        with sqlite3.connect("data.db") as conn:
+            cursor = conn.cursor()
+            cursor.execute("CREATE TABLE accounts (id INTEGER, username TEXT NOT NULL, password TEXT NOT NULL, PRIMARY KEY(id));")
+            print("executed")
 
 def select_table(fileName: str):
     """Select all row from table accounts"""
