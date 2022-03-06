@@ -15,7 +15,7 @@ def account_exist_check(username: str, password: str):
         return False
     
 def username_exist_check(username: str):
-    "Check if an username exist; return True if exist"
+    "Check if a username exist; return True if exist"
     
     with sqlite3.connect("data.db") as conn:
         cursor = conn.cursor()
@@ -29,7 +29,7 @@ def login_check(username: str, password: str):
         return render_template("login_page.html", errorMessage="Invalid username/password")
     
 def register_check(username: str, password1: str, password2: str):
-    """Register check"""
+    "Register check"
     
     # make sure username is unique
     if username_exist_check(username) == True:
