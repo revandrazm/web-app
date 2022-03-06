@@ -90,3 +90,16 @@ def rename_check(sessionUsername: str, current_username: str, new_username: str,
     # make sure account exist in database
     if account_exist_check(current_username, password1.encode("utf-8")) == False:
         return render_template("rename.html", errorMessage="Account doesn't exist")
+    
+def delete_check(sessionUsername: str, username: str, password: str):
+    """Delete account check"""
+    
+    errorMessage = "invalid username/password"
+    
+    # prevent user from deleting other account
+    if sessionUsername != username:
+        return render_template("delete.html", errorMessage=errorMessage)
+    
+    # check if user entered correct username and password
+    if account_exist_check(username, password) == False:
+        return render_template("delete.html", errorMessage=errorMessage)
