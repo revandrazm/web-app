@@ -30,3 +30,13 @@ def select_table_where(fileName: str, username: str):
         cursor.execute("SELECT * FROM accounts WHERE username = ?", (username,))
         result = [dict(row) for row in cursor.fetchall()]
         return result[0]
+    
+def select_table_like(fileName: str, username: str):
+    """Select all row from table accounts with like"""
+    
+    with sqlite3.connect(fileName) as conn:
+        conn.row_factory = sqlite3.Row
+        cursor = conn.cursor()
+        cursor.execute("SELECT username FROM accounts WHERE username LIKE ?", ("%" + username + "%",))
+        result = [dict(row) for row in cursor.fetchall()]
+        return result
