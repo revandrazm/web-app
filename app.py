@@ -57,7 +57,7 @@ def login():
         
         # get values from form
         username = request.form.get("username")
-        password = request.form.get("password").encode("utf-8")
+        password = request.form.get("password")
         
         # check all login condition
         error =  login_check(username.lower(), password)
