@@ -1,53 +1,7 @@
 import sqlite3
 import bcrypt
-import os
-from flask import redirect, render_template, session
+from flask import render_template, redirect, session
 
-
-def create_data():
-    if not os.path.exists("data.db"):
-        with sqlite3.connect("data.db") as conn:
-            cursor = conn.cursor()
-            cursor.execute("CREATE TABLE accounts (id INTEGER, username TEXT NOT NULL, password TEXT NOT NULL, PRIMARY KEY(id));")
-            print("executed")
-
-def select_table(fileName: str):
-    """Select all row from table accounts"""
-    
-    with sqlite3.connect(fileName) as conn:
-        conn.row_factory = sqlite3.Row
-        cursor = conn.cursor()
-        cursor.execute("SELECT * FROM accounts")
-        result = [dict(row) for row in cursor.fetchall()]
-        return result
-    
-def select_table_like(fileName: str, username: str):
-    """Select all row from table accounts with like"""
-    
-    with sqlite3.connect(fileName) as conn:
-        conn.row_factory = sqlite3.Row
-        cursor = conn.cursor()
-        cursor.execute("SELECT username FROM accounts WHERE username LIKE ?", ("%" + username + "%",))
-        result = [dict(row) for row in cursor.fetchall()]
-        return result
-    
-def select_table_where(fileName: str, username: str):
-    """Select all row from table accounts with where"""
-    
-    with sqlite3.connect(fileName) as conn:
-        conn.row_factory = sqlite3.Row
-        cursor = conn.cursor()
-        cursor.execute("SELECT * FROM accounts WHERE username = ?", (username,))
-        result = [dict(row) for row in cursor.fetchall()]
-        return result[0]
-    
-def username_exist_check(username: str):
-    """Check if an username exist; return True if exist"""
-    
-    with sqlite3.connect("data.db") as conn:
-        cursor = conn.cursor()
-        cursor.execute("""SELECT EXISTS(SELECT 1 FROM accounts WHERE username = ?)""", (username,))
-        return cursor.fetchone()[0] == 1
 
 def account_exist_check(username: str, password: str):
     """Check if an account exist; return True if exist"""
@@ -59,27 +13,21 @@ def account_exist_check(username: str, password: str):
             return bcrypt.checkpw(password, cursor.fetchone()[0])
     except TypeError:
         return False
-
-def insert_row(fileName: str, username: str, password: str):
-    """Insert a row into table accounts"""
     
-    with sqlite3.connect(fileName) as conn:
-        cursor = conn.cursor()
-        cursor.execute("""INSERT INTO accounts (username, password) VALUES (?, ?)""", (username, password))
-        
-def delete_row(fileName: str, username: str):
-    """Delete a row into table accounts"""
+def username_exist_check(username: str):
+    """Check if an username exist; return True if exist"""
     
-    with sqlite3.connect(fileName) as conn:
+    with sqlite3.connect("data.db") as conn:
         cursor = conn.cursor()
-        cursor.execute("""DELETE FROM accounts WHERE username = ?""", (username,))
-        
+        cursor.execute("""SELECT EXISTS(SELECT 1 FROM accounts WHERE username = ?)""", (username,))
+        return cursor.fetchone()[0] == 1
+    
 def login_check(username: str, password: str):
     """Login check"""
     
     if account_exist_check(username, password.encode("utf-8")) == False:
         return render_template("login_page.html", errorMessage="Invalid username/password")
-
+    
 def register_check(username: str, password1: str, password2: str):
     """Register check"""
     
@@ -103,19 +51,6 @@ def register_check(username: str, password1: str, password2: str):
     if password1 != password2:
         return render_template("register_page.html", errorMessage="Both password must match")
     
-def delete_check(sessionUsername: str, username: str, password: str):
-    """Delete account check"""
-    
-    errorMessage = "invalid username/password"
-    
-    # prevent user from deleting other account
-    if sessionUsername != username:
-        return render_template("delete.html", errorMessage=errorMessage)
-    
-    # check if user entered correct username and password
-    if account_exist_check(username, password) == False:
-        return render_template("delete.html", errorMessage=errorMessage)
-    
 def session_check(value: str):
     """Check for session value"""
     
@@ -125,14 +60,6 @@ def session_check(value: str):
     if not val:
         return redirect("/login")
     
-def update_row(fileName: str, current_username: str, new_username: str):
-    """Change old username to new username in table accounts"""
-    
-    with sqlite3.connect(fileName) as conn:
-        cursor = conn.cursor()
-        # update account username
-        cursor.execute("""UPDATE accounts SET username = ? WHERE username = ?""", (new_username, current_username,))
-        
 def rename_check(sessionUsername: str, current_username: str, new_username: str, password1: str, password2: str):
     """Check for rename"""
     
@@ -164,10 +91,15 @@ def rename_check(sessionUsername: str, current_username: str, new_username: str,
     if account_exist_check(current_username, password1.encode("utf-8")) == False:
         return render_template("rename.html", errorMessage="Account doesn't exist")
     
-def hash_password(password):
-    """Hash a given password"""
+def delete_check(sessionUsername: str, username: str, password: str):
+    """Delete account check"""
     
-    return bcrypt.hashpw(password, bcrypt.gensalt())
-
-if __name__ == "__main__":
-    print(account_exist_check("repp", b"password1"))
+    errorMessage = "invalid username/password"
+    
+    # prevent user from deleting other account
+    if sessionUsername != username:
+        return render_template("delete.html", errorMessage=errorMessage)
+    
+    # check if user entered correct username and password
+    if account_exist_check(username, password) == False:
+        return render_template("delete.html", errorMessage=errorMessage)
