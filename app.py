@@ -47,8 +47,9 @@ def register():
         # add account to database
         password1 = hash_password(password1.encode("utf-8"))
         insert_row("data.db", username, password1)
-        # redirect to login page if succesful
-        return redirect("/login")
+        session["username"] = username
+        # redirect to home page if succesful
+        return redirect("/")
     
     # render register page as default
     return render_template("register_page.html")
