@@ -55,7 +55,7 @@ def account_exist_check(username: str, password: str):
     try:
         with sqlite3.connect("data.db") as conn:
             cursor = conn.cursor()
-            cursor.execute("""SELECT password FROM accounts WHERE username = ?""", (username, ))
+            cursor.execute("""SELECT password FROM accounts WHERE username = ?""", (username,))
             return bcrypt.checkpw(password, cursor.fetchone()[0])
     except TypeError:
         return False
@@ -77,7 +77,7 @@ def delete_row(fileName: str, username: str):
 def login_check(username: str, password: str):
     """Login check"""
     
-    if account_exist_check(username, bytes(password, encoding="utf-8")) == False:
+    if account_exist_check(username, password.encode("utf-8")) == False:
         return render_template("login_page.html", errorMessage="Invalid username/password")
 
 def register_check(username: str, password1: str, password2: str):
