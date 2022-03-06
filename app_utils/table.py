@@ -40,3 +40,11 @@ def select_table_like(fileName: str, username: str):
         cursor.execute("SELECT username FROM accounts WHERE username LIKE ?", ("%" + username + "%",))
         result = [dict(row) for row in cursor.fetchall()]
         return result
+    
+    
+def insert_row(fileName: str, username: str, password: str):
+    """Insert a row into table accounts"""
+    
+    with sqlite3.connect(fileName) as conn:
+        cursor = conn.cursor()
+        cursor.execute("""INSERT INTO accounts (username, password) VALUES (?, ?)""", (username, password))
