@@ -50,3 +50,12 @@ def register_check(username: str, password1: str, password2: str):
     # make sure both password is matching
     if password1 != password2:
         return render_template("register_page.html", errorMessage="Both password must match")
+    
+def session_check(value: str):
+    """Check for session value"""
+    
+    # get session username
+    val = session.get(value)
+    # if session name doesn't exist, redirect to login page
+    if not val:
+        return redirect("/login")
