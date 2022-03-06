@@ -103,7 +103,7 @@ def register_check(username: str, password1: str, password2: str):
     if password1 != password2:
         return render_template("register_page.html", errorMessage="Both password must match")
     
-def delete_check(sessionUsername: str, username: str, password1: str):
+def delete_check(sessionUsername: str, username: str, password: str):
     """Delete account check"""
     
     errorMessage = "invalid username/password"
@@ -113,7 +113,7 @@ def delete_check(sessionUsername: str, username: str, password1: str):
         return render_template("delete.html", errorMessage=errorMessage)
     
     # check if user entered correct username and password
-    if account_exist_check(username, password1) == False:
+    if account_exist_check(username, password) == False:
         return render_template("delete.html", errorMessage=errorMessage)
     
 def session_check(value: str):
