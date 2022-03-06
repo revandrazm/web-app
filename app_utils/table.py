@@ -63,3 +63,4 @@ def delete_row(fileName: str, username: str):
     with sqlite3.connect(fileName) as conn:
         cursor = conn.cursor()
         cursor.execute("""DELETE FROM accounts WHERE username = ?""", (username,))
+        
