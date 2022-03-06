@@ -1,5 +1,6 @@
 import sqlite3
 import bcrypt
+from flask import render_template
 
 
 def account_exist_check(username: str, password: str):
@@ -26,3 +27,26 @@ def login_check(username: str, password: str):
     
     if account_exist_check(username, password.encode("utf-8")) == False:
         return render_template("login_page.html", errorMessage="Invalid username/password")
+    
+def register_check(username: str, password1: str, password2: str):
+    """Register check"""
+    
+    # make sure username is unique
+    if username_exist_check(username) == True:
+        return render_template("register_page.html", errorMessage="Username is already taken")
+    
+    # make sure username isn't blank
+    if username == "":
+        return render_template("register_page.html", errorMessage="Username cannot be blank")
+    
+    # make sure username doesn't contain spaces
+    if ' ' in username:
+        return render_template("register_page.html", errorMessage="Username cannot contain spaces")
+    
+    # make sure password isn't blank
+    if (password1 == "" or password2 == "") or (password1.isspace() or password2.isspace()):
+        return render_template("register_page.html", errorMessage="Password cannot be blank")
+    
+    # make sure both password is matching
+    if password1 != password2:
+        return render_template("register_page.html", errorMessage="Both password must match")
