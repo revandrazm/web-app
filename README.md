@@ -1,4 +1,4 @@
-# webApp
+# web-app
 simple web application with features. (wip)
 
 ## Features
