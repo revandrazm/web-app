@@ -4,7 +4,7 @@ from flask import render_template, redirect, session
 
 
 def account_exist_check(username: str, password: str):
-    """Check if an account exist; return True if exist"""
+    "Check if an account exist; return True if exist"
     
     try:
         with sqlite3.connect("data.db") as conn:
@@ -15,7 +15,7 @@ def account_exist_check(username: str, password: str):
         return False
     
 def username_exist_check(username: str):
-    """Check if an username exist; return True if exist"""
+    "Check if an username exist; return True if exist"
     
     with sqlite3.connect("data.db") as conn:
         cursor = conn.cursor()
@@ -23,7 +23,7 @@ def username_exist_check(username: str):
         return cursor.fetchone()[0] == 1
     
 def login_check(username: str, password: str):
-    """Login check"""
+    "Login check"
     
     if account_exist_check(username, password.encode("utf-8")) == False:
         return render_template("login_page.html", errorMessage="Invalid username/password")
@@ -52,7 +52,7 @@ def register_check(username: str, password1: str, password2: str):
         return render_template("register_page.html", errorMessage="Both password must match")
     
 def session_check(value: str):
-    """Check for session value"""
+    "Check for session value"
     
     # get session username
     val = session.get(value)
@@ -61,7 +61,7 @@ def session_check(value: str):
         return redirect("/login")
     
 def rename_check(sessionUsername: str, current_username: str, new_username: str, password1: str, password2: str):
-    """Check for rename"""
+    "Check for rename"
     
     # prevent user from changing other account username
     if sessionUsername != current_username:
@@ -92,7 +92,7 @@ def rename_check(sessionUsername: str, current_username: str, new_username: str,
         return render_template("rename.html", errorMessage="Account doesn't exist")
     
 def delete_check(sessionUsername: str, username: str, password: str):
-    """Delete account check"""
+    "Delete account check"
     
     errorMessage = "invalid username/password"
     

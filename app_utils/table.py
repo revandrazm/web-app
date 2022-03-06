@@ -4,7 +4,7 @@ import sqlite3
 
 
 def create_table():
-    """Create table if it doesn't exist"""
+    "Create table if it doesn't exist"
     
     if not os.path.exists("data.db"):
         with sqlite3.connect("data.db") as conn:
@@ -12,7 +12,7 @@ def create_table():
             cursor.execute("CREATE TABLE accounts (id INTEGER, username TEXT NOT NULL, password TEXT NOT NULL, PRIMARY KEY(id));")
             
 def select_table(fileName: str):
-    """Select all row from table accounts"""
+    "Select all row from table accounts"
     
     with sqlite3.connect(fileName) as conn:
         conn.row_factory = sqlite3.Row
@@ -22,7 +22,7 @@ def select_table(fileName: str):
         return result
     
 def select_table_where(fileName: str, username: str):
-    """Select all row from table accounts with where"""
+    "Select all row from table accounts with where"
     
     with sqlite3.connect(fileName) as conn:
         conn.row_factory = sqlite3.Row
@@ -32,7 +32,7 @@ def select_table_where(fileName: str, username: str):
         return result[0]
     
 def select_table_like(fileName: str, username: str):
-    """Select all row from table accounts with like"""
+    "Select all row from table accounts with like"
     
     with sqlite3.connect(fileName) as conn:
         conn.row_factory = sqlite3.Row
@@ -43,14 +43,14 @@ def select_table_like(fileName: str, username: str):
     
     
 def insert_row(fileName: str, username: str, password: str):
-    """Insert a row into table accounts"""
+    "Insert a row into table accounts"
     
     with sqlite3.connect(fileName) as conn:
         cursor = conn.cursor()
         cursor.execute("""INSERT INTO accounts (username, password) VALUES (?, ?)""", (username, password))
         
 def update_row(fileName: str, current_username: str, new_username: str):
-    """Change old username to new username in table accounts"""
+    "Change old username to new username in table accounts"
     
     with sqlite3.connect(fileName) as conn:
         cursor = conn.cursor()
@@ -58,9 +58,8 @@ def update_row(fileName: str, current_username: str, new_username: str):
         cursor.execute("""UPDATE accounts SET username = ? WHERE username = ?""", (new_username, current_username,))
         
 def delete_row(fileName: str, username: str):
-    """Delete a row into table accounts"""
+    "Delete a row into table accounts"
     
     with sqlite3.connect(fileName) as conn:
         cursor = conn.cursor()
         cursor.execute("""DELETE FROM accounts WHERE username = ?""", (username,))
-        
