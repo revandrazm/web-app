@@ -56,3 +56,10 @@ def update_row(fileName: str, current_username: str, new_username: str):
         cursor = conn.cursor()
         # update account username
         cursor.execute("""UPDATE accounts SET username = ? WHERE username = ?""", (new_username, current_username,))
+        
+def delete_row(fileName: str, username: str):
+    """Delete a row into table accounts"""
+    
+    with sqlite3.connect(fileName) as conn:
+        cursor = conn.cursor()
+        cursor.execute("""DELETE FROM accounts WHERE username = ?""", (username,))
