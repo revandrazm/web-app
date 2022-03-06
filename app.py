@@ -3,10 +3,10 @@ import random
 from flask_session import Session
 from flask import Flask, redirect, render_template, request, session, jsonify
 
-from app_tools import *
+from app_utils import *
 
 # create data.db
-create_data()
+create_table()
 
 # for data link
 opt = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_@-+"
