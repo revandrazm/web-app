@@ -48,3 +48,11 @@ def insert_row(fileName: str, username: str, password: str):
     with sqlite3.connect(fileName) as conn:
         cursor = conn.cursor()
         cursor.execute("""INSERT INTO accounts (username, password) VALUES (?, ?)""", (username, password))
+        
+def update_row(fileName: str, current_username: str, new_username: str):
+    """Change old username to new username in table accounts"""
+    
+    with sqlite3.connect(fileName) as conn:
+        cursor = conn.cursor()
+        # update account username
+        cursor.execute("""UPDATE accounts SET username = ? WHERE username = ?""", (new_username, current_username,))
