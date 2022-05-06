@@ -3,7 +3,8 @@ import random
 from flask_session import Session
 from flask import Flask, redirect, render_template, request, session, jsonify
 
-from app_utils import *
+from utils import *
+
 
 # create data.db
 create_table()
