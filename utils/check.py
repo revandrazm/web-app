@@ -3,7 +3,7 @@ import bcrypt
 from flask import render_template, redirect, session
 
 
-def account_exist_check(username: str, password: str):
+def _account_exist_check(username: str, password: str) -> bool:
     "Check if an account exist; return True if exist"
     
     try:
@@ -14,7 +14,7 @@ def account_exist_check(username: str, password: str):
     except TypeError:
         return False
     
-def username_exist_check(username: str):
+def username_exist_check(username: str) -> bool:
     "Check if a username exist; return True if exist"
     
     with sqlite3.connect("data.db") as conn:
@@ -22,13 +22,13 @@ def username_exist_check(username: str):
         cursor.execute("""SELECT EXISTS(SELECT 1 FROM accounts WHERE username = ?)""", (username,))
         return cursor.fetchone()[0] == 1
     
-def login_check(username: str, password: str):
+def login_check(username: str, password: str) -> render_template:
     "Login check"
     
-    if account_exist_check(username, password.encode("utf-8")) == False:
+    if _account_exist_check(username, password.encode("utf-8")) == False:
         return render_template("login_page.html", errorMessage="Invalid username/password")
     
-def register_check(username: str, password1: str, password2: str):
+def register_check(username: str, password1: str, password2: str) -> render_template:
     "Register check"
     
     # make sure username is unique
@@ -51,7 +51,7 @@ def register_check(username: str, password1: str, password2: str):
     if password1 != password2:
         return render_template("register_page.html", errorMessage="Both password must match")
     
-def session_check(value: str):
+def session_check(value: str) -> redirect:
     "Check for session value"
     
     # get session username
@@ -60,7 +60,13 @@ def session_check(value: str):
     if not val:
         return redirect("/login")
     
-def rename_check(sessionUsername: str, current_username: str, new_username: str, password1: str, password2: str):
+def rename_check(
+    sessionUsername: str, 
+    current_username: str, 
+    new_username: str, 
+    password1: str, 
+    password2: str
+) -> render_template:
     "Check for rename"
     
     # prevent user from changing other account username
@@ -88,10 +94,10 @@ def rename_check(sessionUsername: str, current_username: str, new_username: str,
         return render_template("rename.html", errorMessage="Both password must match")
     
     # make sure account exist in database
-    if account_exist_check(current_username, password1.encode("utf-8")) == False:
+    if _account_exist_check(current_username, password1.encode("utf-8")) == False:
         return render_template("rename.html", errorMessage="Account doesn't exist")
     
-def delete_check(sessionUsername: str, username: str, password: str):
+def delete_check(sessionUsername: str, username: str, password: str) -> render_template:
     "Delete account check"
     
     errorMessage = "invalid username/password"
@@ -101,5 +107,9 @@ def delete_check(sessionUsername: str, username: str, password: str):
         return render_template("delete.html", errorMessage=errorMessage)
     
     # check if user entered correct username and password
-    if account_exist_check(username, password) == False:
+    if _account_exist_check(username, password) == False:
         return render_template("delete.html", errorMessage=errorMessage)
+
+# tests
+if __name__ == "__main__":
+    login_check()
