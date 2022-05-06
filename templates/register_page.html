@@ -1,35 +1,35 @@
 {% extends "layout.html" %}
 
 {% block head %}
-    <link href="/static/css/form_style.css" rel="stylesheet">
+	<link href="/static/css/form_style.css" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
 
-    <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
-        <div class="container bgcolor">
-            <form action="/register" method="post">
-                <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" name="username" aria-describedby="username" placeholder="Enter username..." autocomplete="off">
-                </div>
-                <div class="mb-3">
-                    <label for="password1" class="form-label">Password</label>
-                    <input type="password" class="form-control" name="password1" aria-describedby="password1" placeholder="Enter password..." autocomplete="off">
-                </div>
-                <div class="mb-3">
-                    <label for="password2" class="form-label">Re-Enter Password</label>
-                    <input type="password" class="form-control" name="password2" aria-describedby="password2" placeholder="Re-Enter password..." autocomplete="off">
-                </div>
-                <div class="mb-3">
-                    <p class="error-message"><br>{{errorMessage}}</p>
-                </div>
-                <button type="submit" class="btn btn-primary">Register</button>
-                <div class="footer-text">
-                    <p>Already have an account? <a href="/login">Login</a></p>
-                </div>
-            </form>
-        </div>
-    </div>
+	<div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+		<div class="container bgcolor">
+			<form action="/register" method="post">
+				<div class="mb-3">
+					<label for="username" class="form-label">Username</label>
+					<input type="text" class="form-control" name="username" aria-describedby="username" placeholder="Enter username..." autocomplete="off">
+				</div>
+				<div class="mb-3">
+					<label for="password1" class="form-label">Password</label>
+					<input type="password" class="form-control" name="password1" aria-describedby="password1" placeholder="Enter password..." autocomplete="off">
+				</div>
+				<div class="mb-3">
+					<label for="password2" class="form-label">Re-Enter Password</label>
+					<input type="password" class="form-control" name="password2" aria-describedby="password2" placeholder="Re-Enter password..." autocomplete="off">
+				</div>
+				<div class="mb-3">
+					<p class="error-message"><br>{{errorMessage}}</p>
+				</div>
+				<button type="submit" class="btn btn-primary">Register</button>
+				<div class="footer-text">
+					<p>Already have an account? <a href="/login">Login</a></p>
+				</div>
+			</form>
+		</div>
+	</div>
 
 {% endblock %}

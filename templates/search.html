@@ -1,43 +1,43 @@
 {% extends "layout_navbar.html" %}
 
 {% block head %}
-    <link href="/static/search/search_style.css" rel="stylesheet">
+	<link href="/static/search/search_style.css" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
-    
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <ul class="nav navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Home</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/search">Search</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/about">About</a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav abs-center-x">
-                <li class="nav-item navbar-brand"><a class="nav-link" id="time" style="cursor: default"></a></li>
-            </ul>
-            <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/profile">{{username}}</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+	
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container">
+			<ul class="nav navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="/">Home</a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link" href="/search">Search</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/about">About</a>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav abs-center-x">
+				<li class="nav-item navbar-brand"><a class="nav-link" id="time" style="cursor: default"></a></li>
+			</ul>
+			<ul class="nav navbar-nav ml-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="/profile">{{username}}</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
 
-    <div class="div-bg">
-        <div class="form-outline">
-            <input type="text" id="form1" class="form-control" placeholder="Type query">
-        </div>
-        <br>
-        <ul id="showUsername"></ul>
-    </div>
+	<div class="div-bg">
+		<div class="form-outline">
+			<input type="text" id="form1" class="form-control" placeholder="Type query">
+		</div>
+		<br>
+		<ul id="showUsername"></ul>
+	</div>
 
-    <script src="/static/js/search_script.js"></script>
-    
+	<script src="/static/js/search_script.js"></script>
+	
 {% endblock %}

@@ -2,38 +2,38 @@
 
 {% block body %}
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <ul class="nav navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/search">Search</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/about">About</a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav abs-center-x">
-                <li class="nav-item navbar-brand"><a class="nav-link" id="time" style="cursor: default"></a></li>
-            </ul>
-            <ul class="nav navbar-nav ml-auto active">
-                <li class="nav-item">
-                    <a class="nav-link" href="/profile">{{username}}</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container">
+			<ul class="nav navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="/">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/search">Search</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/about">About</a>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav abs-center-x">
+				<li class="nav-item navbar-brand"><a class="nav-link" id="time" style="cursor: default"></a></li>
+			</ul>
+			<ul class="nav navbar-nav ml-auto active">
+				<li class="nav-item">
+					<a class="nav-link" href="/profile">{{username}}</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
 
-    <div class="div-bg">
-        <a href="/rename" class="btn btn-primary" role="button">Rename</a>
-        <p></p>
-        <form action="/logout" method="post">
-            <button type="submit" class="btn btn-danger">Logout</button>
-        </form>
-        <p></p>
-        <a href="/delete" class="btn btn-danger" role="button">Delete Account</a>
-    </div>
+	<div class="div-bg">
+		<a href="/rename" class="btn btn-primary" role="button">Rename</a>
+		<p></p>
+		<form action="/logout" method="post">
+			<button type="submit" class="btn btn-danger">Logout</button>
+		</form>
+		<p></p>
+		<a href="/delete" class="btn btn-danger" role="button">Delete Account</a>
+	</div>
 
 {% endblock %}

@@ -1,30 +1,30 @@
 {% extends "layout.html" %}
 
 {% block head %}
-    <link href="/static/css/form_style.css" rel="stylesheet">
+	<link href="/static/css/form_style.css" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
-    <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
-        <div class="container bgcolor">
-            <form action="/login" method="post">
-                <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" name="username" aria-describedby="username" placeholder="Enter username..." autocomplete="off">
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" name="password" aria-describedby="password" placeholder="Enter password..." autocomplete="off">
-                </div>
-                <div class="mb-3">
-                    <p class="error-message"><br>{{errorMessage}}</p>
-                </div>
-                <button type="submit" class="btn btn-primary">Login</button>
-                <div class="footer-text">
-                    <p>Don't have an account? <a href="/register">Register</a></p>
-                </div>
-            </form>
-        </div>
-    </div>
+	<div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+		<div class="container bgcolor">
+			<form action="/login" method="post">
+				<div class="mb-3">
+					<label for="username" class="form-label">Username</label>
+					<input type="text" class="form-control" name="username" aria-describedby="username" placeholder="Enter username..." autocomplete="off">
+				</div>
+				<div class="mb-3">
+					<label for="password" class="form-label">Password</label>
+					<input type="password" class="form-control" name="password" aria-describedby="password" placeholder="Enter password..." autocomplete="off">
+				</div>
+				<div class="mb-3">
+					<p class="error-message"><br>{{errorMessage}}</p>
+				</div>
+				<button type="submit" class="btn btn-primary">Login</button>
+				<div class="footer-text">
+					<p>Don't have an account? <a href="/register">Register</a></p>
+				</div>
+			</form>
+		</div>
+	</div>
 
 {% endblock %}
