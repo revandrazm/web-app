@@ -7,7 +7,7 @@ simple web application with features. (wip)
 - Hashed password
 - Search other accounts
 - Delete account
-- Rename account
+- Change account username
 - Change password (wip)
 
 ### Requirements
