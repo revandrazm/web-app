@@ -128,8 +128,8 @@ def profile():
 		return check
 	return render_template("profile.html", username=session.get("username"))
 
-@app.route("/rename", methods=["GET", "POST"])
-def rename():
+@app.route("/change_username", methods=["GET", "POST"])
+def change_username():
 	check = session_check("username")
 	if check:
 		return check
@@ -141,7 +141,7 @@ def rename():
 		password2 = request.form.get("password2")
 		
 		# check error
-		error = rename_check(sessionUsername, current_username, new_username, password1, password2)
+		error = change_username_check(sessionUsername, current_username, new_username, password1, password2)
 		# return error if found
 		if error:
 			return error
@@ -151,7 +151,7 @@ def rename():
 		# change session uesrname
 		session["username"] = new_username
 		return redirect("/")
-	return render_template("rename.html")
+	return render_template("change_username.html")
 
 
 # functions & misc
