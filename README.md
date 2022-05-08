@@ -8,7 +8,7 @@ simple web application with features. (wip)
 - Search other accounts
 - Delete account
 - Change account username
-- Change password (wip)
+- Change account password
 
 ### Requirements
 - Flask
