@@ -3,8 +3,8 @@ import bcrypt
 from flask import render_template, redirect, session
 
 
-def _account_exist_check(username: str, password: str) -> bool:
-	"Check if an account exist; return True if exist"
+def _login_correct_check(username: str, password: str) -> bool:
+	"Check if username and password is correct; return True if exist"
 	
 	try:
 		with sqlite3.connect("data.db") as conn:
@@ -25,7 +25,7 @@ def username_exist_check(username: str) -> bool:
 def login_check(username: str, password: str) -> render_template:
 	"Login check"
 	
-	if _account_exist_check(username, password.encode("utf-8")) == False:
+	if _login_correct_check(username, password.encode("utf-8")) == False:
 		return render_template("login_page.html", errorMessage="Invalid username/password")
 	
 def register_check(username: str, password1: str, password2: str) -> render_template:
@@ -66,7 +66,7 @@ def change_username_check(
 	new_username: str, 
 	password1: str, 
 	password2: str
-) -> render_template:
+	) -> render_template:
 	"Checks for changing username"
 	
 	# prevent user from changing other account username
@@ -94,21 +94,21 @@ def change_username_check(
 		return render_template("change_username.html", errorMessage="Both password must match")
 	
 	# make sure account exist in database
-	if _account_exist_check(current_username, password1.encode("utf-8")) == False:
+	if _login_correct_check(current_username, password1.encode("utf-8")) == False:
 		return render_template("change_username.html", errorMessage="Account doesn't exist")
 	
 def delete_check(sessionUsername: str, username: str, password: str) -> render_template:
 	"Delete account check"
 	
-	errorMessage = "invalid username/password"
+	error_message = "invalid username/password"
 	
 	# prevent user from deleting other account
 	if sessionUsername != username:
-		return render_template("delete.html", errorMessage=errorMessage)
+		return render_template("delete.html", errorMessage=error_message)
 	
 	# check if user entered correct username and password
-	if _account_exist_check(username, password) == False:
-		return render_template("delete.html", errorMessage=errorMessage)
+	if _login_correct_check(username, password) == False:
+		return render_template("delete.html", errorMessage=error_message)
 
 # tests
 if __name__ == "__main__":
