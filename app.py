@@ -153,6 +153,12 @@ def change_username():
 		return redirect("/")
 	return render_template("change_username.html")
 
+@app.route("/change_password")
+def change_password():
+    if check := session_check("username"):
+        return check
+    return render_template("change_password.html")
+
 
 # functions & misc
 @app.route(f"/{link}")
