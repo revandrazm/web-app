@@ -1,5 +1,4 @@
 import os
-
 import sqlite3
 
 
@@ -56,6 +55,14 @@ def update_row_username(fileName: str, current_username: str, new_username: str)
 		cursor = conn.cursor()
 		# update account username
 		cursor.execute("""UPDATE accounts SET username = ? WHERE username = ?""", (new_username, current_username,))
+
+def update_row_password(username: str, new_password: str):
+    "Change old password to new password in accounts table"
+    
+    with sqlite3.connect("data.db") as conn:
+        cursor = conn.cursor()
+        # update account password
+        cursor.execute("""UPDATE accounts SET password = ? WHERE username = ?""", (hash_password(new_password.encode("utf-8")), username,))
 		
 def delete_row(fileName: str, username: str) -> None:
 	"Delete a row from accounts table"
@@ -63,3 +70,7 @@ def delete_row(fileName: str, username: str) -> None:
 	with sqlite3.connect(fileName) as conn:
 		cursor = conn.cursor()
 		cursor.execute("""DELETE FROM accounts WHERE username = ?""", (username,))
+
+if __name__ == "__main__":
+    from misc import hash_password
+    update_row_password("revandrazm", "testing")
