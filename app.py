@@ -157,12 +157,17 @@ def change_username():
 def change_password():
     if check := session_check("username"):
         return check
+    
     if request.method == "POST":
         session_username = session.get("username")
         username = request.form.get("username")
         old_password = request.form.get("old_password")
         new_password1 = request.form.get("new_password1")
         new_password2 = request.form.get("new_password2")
+        
+        # check for errors
+        if error := change_password_check(session_username, username, old_password, new_password1, new_password2):
+            return error
         
         return redirect("/")
     
