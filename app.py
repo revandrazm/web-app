@@ -153,10 +153,19 @@ def change_username():
 		return redirect("/")
 	return render_template("change_username.html")
 
-@app.route("/change_password")
+@app.route("/change_password", methods=["GET", "POST"])
 def change_password():
     if check := session_check("username"):
         return check
+    if request.method == "POST":
+        session_username = session.get("username")
+        username = request.form.get("username")
+        old_password = request.form.get("old_password")
+        new_password1 = request.form.get("new_password1")
+        new_password2 = request.form.get("new_password2")
+        
+        return redirect("/")
+    
     return render_template("change_password.html")
 
 
