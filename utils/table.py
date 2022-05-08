@@ -49,7 +49,7 @@ def insert_row(fileName: str, username: str, password: str) -> None:
 		cursor = conn.cursor()
 		cursor.execute("""INSERT INTO accounts (username, password) VALUES (?, ?)""", (username, password))
 		
-def update_row(fileName: str, current_username: str, new_username: str) -> None:
+def update_row_username(fileName: str, current_username: str, new_username: str) -> None:
 	"Change old username to new username in accounts table"
 	
 	with sqlite3.connect(fileName) as conn:

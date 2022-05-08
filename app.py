@@ -146,8 +146,8 @@ def change_username():
 		if error:
 			return error
 		
-		# change username
-		update_row("data.db", current_username, new_username)
+		# change username in database
+		update_row_username("data.db", current_username, new_username)
 		# change session uesrname
 		session["username"] = new_username
 		return redirect("/")
