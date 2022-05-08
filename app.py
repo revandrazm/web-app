@@ -169,6 +169,9 @@ def change_password():
         if error := change_password_check(session_username, username, old_password, new_password1, new_password2):
             return error
         
+        # update password in database
+        update_row_password(username, hash_password(new_password1.encode("utf-8")))
+        
         return redirect("/")
     
     return render_template("change_password.html")
