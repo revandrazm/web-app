@@ -24,9 +24,9 @@ Session(app)
 
 @app.route("/")
 def index():
-	error = session_check("username")
-	if error:
-		return error
+	if check := session_check("username"):
+		return check
+
 	# render home page
 	return render_template("index.html", username=session["username"], link=link)
 
@@ -79,9 +79,9 @@ def login():
 
 @app.route("/delete", methods=["GET", "POST"])
 def delete():
-	check = session_check("username")
-	if check:
+	if check := session_check("username"):
 		return check
+
 	if request.method == "POST":
 		# get values from form
 		try:
@@ -108,31 +108,31 @@ def delete():
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
-	check = session_check("username")
-	if check:
+	if check := session_check("username"):
 		return check
+
 	return render_template("search.html", username=session.get("username"))
 
 @app.route("/about")
 def about():
-	check = session_check("username")
-	if check:
+	if check := session_check("username"):
 		return check
+
 	return render_template("about.html", username=session.get("username"))
 
 
 @app.route("/profile")
 def profile():
-	check = session_check("username")
-	if check:
+	if check := session_check("username"):
 		return check
+
 	return render_template("profile.html", username=session.get("username"))
 
 @app.route("/change_username", methods=["GET", "POST"])
 def change_username():
-	check = session_check("username")
-	if check:
+	if check := session_check("username"):
 		return check
+
 	if request.method == "POST":
 		sessionUsername = session.get("username")
 		current_username = request.form.get("current_username")
@@ -155,26 +155,26 @@ def change_username():
 
 @app.route("/change_password", methods=["GET", "POST"])
 def change_password():
-    if check := session_check("username"):
-        return check
-    
-    if request.method == "POST":
-        session_username = session.get("username")
-        username = request.form.get("username")
-        old_password = request.form.get("old_password")
-        new_password1 = request.form.get("new_password1")
-        new_password2 = request.form.get("new_password2")
-        
-        # check for errors
-        if error := change_password_check(session_username, username, old_password, new_password1, new_password2):
-            return error
-        
-        # update password in database
-        update_row_password(username, hash_password(new_password1.encode("utf-8")))
-        
-        return redirect("/")
-    
-    return render_template("change_password.html")
+	if check := session_check("username"):
+		return check
+
+	if request.method == "POST":
+		session_username = session.get("username")
+		username = request.form.get("username")
+		old_password = request.form.get("old_password")
+		new_password1 = request.form.get("new_password1")
+		new_password2 = request.form.get("new_password2")
+		
+		# check for errors
+		if error := change_password_check(session_username, username, old_password, new_password1, new_password2):
+			return error
+		
+		# update password in database
+		update_row_password(username, hash_password(new_password1.encode("utf-8")))
+		
+		return redirect("/")
+	
+	return render_template("change_password.html")
 
 
 # functions & misc
