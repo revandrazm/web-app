@@ -38,10 +38,8 @@ def register():
 		password1 = request.form.get("password1")
 		password2 = request.form.get("password2")
 		
-		# check all register condition
-		error = register_check(username, password1, password2)
-		# return error if found
-		if error:
+		# check for register error
+		if error := register_check(username, password1, password2):
 			return error
 		
 		# add account to database
@@ -62,10 +60,8 @@ def login():
 		username = request.form.get("username")
 		password = request.form.get("password")
 		
-		# check all login condition
-		error =  login_check(username.lower(), password)
-		# return error if found
-		if error:
+		# check for login error
+		if error := login_check(username.lower(), password):
 			return error
 
 		# remember session username
@@ -83,17 +79,12 @@ def delete():
 
 	if request.method == "POST":
 		# get values from form
-		try:
-			sessionUsername = session.get("username")
-			username = request.form.get("username")
-			password = request.form.get("password").encode("utf-8")
-		except AttributeError:
-			return render_template("delete.html", error_message="Invalid username/password")
+		session_username = session.get("username")
+		username = request.form.get("username")
+		password = request.form.get("password")
 		
 		# check for error in form
-		error = delete_check(sessionUsername, username, password)
-		# return error if found
-		if error:
+		if error := delete_check(session_username, username, password):
 			return error
 		
 		# delete account from database
@@ -133,16 +124,14 @@ def change_username():
 		return check
 
 	if request.method == "POST":
-		sessionUsername = session.get("username")
+		session_username = session.get("username")
 		current_username = request.form.get("current_username")
 		new_username = request.form.get("new_username")
 		password1 = request.form.get("password1")
 		password2 = request.form.get("password2")
 		
-		# check error
-		error = change_username_check(sessionUsername, current_username, new_username, password1, password2)
-		# return error if found
-		if error:
+		# check for error
+		if error := change_username_check(session_username, current_username, new_username, password1, password2):
 			return error
 		
 		# change username in database
@@ -203,5 +192,5 @@ def test():
 	return render_template("test.html")
 
 if __name__ == "__main__":
-	app.run(debug=True)
 	print(link)
+	app.run(debug=True)

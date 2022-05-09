@@ -3,7 +3,7 @@ import bcrypt
 from flask import render_template, redirect, session
 
 
-def _login_correct_check(username: str, password: str) -> bool:
+def _login_correct_check(username: str, password: bytes) -> bool:
 	"Check if username and password is correct; return True if exist"
 	
 	try:
@@ -100,14 +100,14 @@ def change_username_check(
 def delete_check(sessionUsername: str, username: str, password: str) -> render_template:
 	"Delete account check"
 	
-	error_message = "invalid username/password"
+	error_message = "Invalid username/password"
 	
 	# prevent user from deleting other account
 	if sessionUsername != username:
 		return render_template("delete.html", error_message=error_message)
 	
 	# check if user entered correct username and password
-	if _login_correct_check(username, password) == False:
+	if _login_correct_check(username, password.encode("utf-8")) == False:
 		return render_template("delete.html", error_message=error_message)
 
 def change_password_check(session_username: str, username: str, old_password: str, new_password1: str, new_password2: str):
