@@ -111,27 +111,27 @@ def delete_check(sessionUsername: str, username: str, password: str) -> render_t
 		return render_template("delete.html", error_message=error_message)
 
 def change_password_check(session_username: str, username: str, old_password: str, new_password1: str, new_password2: str):
-    "Checks for changing password"
-    
-    # prevent user from changing password of other account
-    if session_username != username:
-        return render_template("change_password.html", error_message="Invalid username/old password")
-    
-    # check if user entered correct username and password
-    if _login_correct_check(username, old_password.encode("utf-8")) == False:
-        return render_template("change_password.html", error_message="Invalid username/old password")
-    
-    # make sure both new password is the same
-    if new_password1 != new_password2:
-        return render_template("change_password.html", error_message="Both new password must be matching")
-    
-    # make sure new password is not blank
-    if (not new_password1) or (new_password1.isspace()):
-        return render_template("change_password.html", error_message="New password cannot be blank")
-    
-    # check if new password is the same as old password
-    if new_password1 == old_password:
-        return render_template("change_password.html", error_message="New password cannot be the same as old password")
+	"Checks for changing password"
+	
+	# prevent user from changing password of other account
+	if session_username != username:
+		return render_template("change_password.html", error_message="Invalid username/old password")
+	
+	# check if user entered correct username and password
+	if _login_correct_check(username, old_password.encode("utf-8")) == False:
+		return render_template("change_password.html", error_message="Invalid username/old password")
+	
+	# make sure both new password is the same
+	if new_password1 != new_password2:
+		return render_template("change_password.html", error_message="Both new password must be matching")
+	
+	# make sure new password is not blank
+	if (not new_password1) or (new_password1.isspace()):
+		return render_template("change_password.html", error_message="New password cannot be blank")
+	
+	# check if new password is the same as old password
+	if new_password1 == old_password:
+		return render_template("change_password.html", error_message="New password cannot be the same as old password")
 
 # tests
 if __name__ == "__main__":
