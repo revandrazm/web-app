@@ -12,7 +12,6 @@ create_table()
 # for data link
 opt = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_@-+"
 link = "".join(random.sample(opt, 50))
-print(link)
 
 # app config
 app = Flask(__name__)
@@ -205,3 +204,4 @@ def test():
 
 if __name__ == "__main__":
 	app.run(debug=True)
+	print(link)
