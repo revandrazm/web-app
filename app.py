@@ -89,7 +89,7 @@ def delete():
 			username = request.form.get("username")
 			password = request.form.get("password").encode("utf-8")
 		except AttributeError:
-			return render_template("delete.html", errorMessage="Invalid username/password")
+			return render_template("delete.html", error_message="Invalid username/password")
 		
 		# check for error in form
 		error = delete_check(sessionUsername, username, password)

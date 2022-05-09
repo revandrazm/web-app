@@ -26,30 +26,30 @@ def login_check(username: str, password: str) -> render_template:
 	"Login check"
 	
 	if _login_correct_check(username, password.encode("utf-8")) == False:
-		return render_template("login_page.html", errorMessage="Invalid username/password")
+		return render_template("login_page.html", error_message="Invalid username/password")
 	
 def register_check(username: str, password1: str, password2: str) -> render_template:
 	"Register check"
 	
 	# make sure username is unique
 	if username_exist_check(username) == True:
-		return render_template("register_page.html", errorMessage="Username is already taken")
+		return render_template("register_page.html", error_message="Username is already taken")
 	
 	# make sure username isn't blank
 	if username == "":
-		return render_template("register_page.html", errorMessage="Username cannot be blank")
+		return render_template("register_page.html", error_message="Username cannot be blank")
 	
 	# make sure username doesn't contain spaces
 	if ' ' in username:
-		return render_template("register_page.html", errorMessage="Username cannot contain spaces")
+		return render_template("register_page.html", error_message="Username cannot contain spaces")
 	
 	# make sure password isn't blank
 	if (password1 == "" or password2 == "") or (password1.isspace() or password2.isspace()):
-		return render_template("register_page.html", errorMessage="Password cannot be blank")
+		return render_template("register_page.html", error_message="Password cannot be blank")
 	
 	# make sure both password is matching
 	if password1 != password2:
-		return render_template("register_page.html", errorMessage="Both password must match")
+		return render_template("register_page.html", error_message="Both password must match")
 	
 def session_check(value: str) -> redirect:
 	"Check for session value"
@@ -71,31 +71,31 @@ def change_username_check(
 	
 	# prevent user from changing other account username
 	if sessionUsername != current_username:
-		return render_template("change_username.html", errorMessage="Invalid username")
+		return render_template("change_username.html", error_message="Invalid username")
 	
 	# make sure new username is not blank
 	if (not new_username) or (new_username.isspace()):
-		return render_template("change_username.html", errorMessage="Invalid new username")
+		return render_template("change_username.html", error_message="Invalid new username")
 	
 	# make sure new username is different than current username
 	if current_username == new_username:
-		return render_template("change_username.html", errorMessage="New username cannot be the same as current username")
+		return render_template("change_username.html", error_message="New username cannot be the same as current username")
 	
 	# make sure new username is unique
 	if username_exist_check(new_username) == True:
-		return render_template("change_username.html", errorMessage="Username is already taken")
+		return render_template("change_username.html", error_message="Username is already taken")
 	
 	# make sure password is not blank
 	if (not password1 or not password2) or (password1.isspace() or password2.isspace()):
-		return render_template("change_username.html", errorMessage="Password cannot be blank")
+		return render_template("change_username.html", error_message="Password cannot be blank")
 	
 	# make sure both password is matching
 	if password1 != password2:
-		return render_template("change_username.html", errorMessage="Both password must match")
+		return render_template("change_username.html", error_message="Both password must match")
 	
 	# make sure account exist in database
 	if _login_correct_check(current_username, password1.encode("utf-8")) == False:
-		return render_template("change_username.html", errorMessage="Account doesn't exist")
+		return render_template("change_username.html", error_message="Account doesn't exist")
 	
 def delete_check(sessionUsername: str, username: str, password: str) -> render_template:
 	"Delete account check"
@@ -104,11 +104,11 @@ def delete_check(sessionUsername: str, username: str, password: str) -> render_t
 	
 	# prevent user from deleting other account
 	if sessionUsername != username:
-		return render_template("delete.html", errorMessage=error_message)
+		return render_template("delete.html", error_message=error_message)
 	
 	# check if user entered correct username and password
 	if _login_correct_check(username, password) == False:
-		return render_template("delete.html", errorMessage=error_message)
+		return render_template("delete.html", error_message=error_message)
 
 def change_password_check(session_username: str, username: str, old_password: str, new_password1: str, new_password2: str):
     "Checks for changing password"
