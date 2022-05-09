@@ -1,5 +1,5 @@
 # web-app
-simple web application with features. (wip)
+simple website with features. (wip)
 
 ## Features
 - Register
