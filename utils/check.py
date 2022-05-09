@@ -61,7 +61,7 @@ def session_check(value: str) -> redirect:
 		return redirect("/login")
 	
 def change_username_check(
-	sessionUsername: str, 
+	session_username: str, 
 	current_username: str, 
 	new_username: str, 
 	password1: str, 
@@ -70,7 +70,7 @@ def change_username_check(
 	"Checks for changing username"
 	
 	# prevent user from changing other account username
-	if sessionUsername != current_username:
+	if session_username != current_username:
 		return render_template("change_username.html", error_message="Invalid username")
 	
 	# make sure new username is not blank
@@ -97,13 +97,13 @@ def change_username_check(
 	if _login_correct_check(current_username, password1.encode("utf-8")) == False:
 		return render_template("change_username.html", error_message="Account doesn't exist")
 	
-def delete_check(sessionUsername: str, username: str, password: str) -> render_template:
+def delete_check(session_username: str, username: str, password: str) -> render_template:
 	"Delete account check"
 	
 	error_message = "Invalid username/password"
 	
 	# prevent user from deleting other account
-	if sessionUsername != username:
+	if session_username != username:
 		return render_template("delete.html", error_message=error_message)
 	
 	# check if user entered correct username and password
