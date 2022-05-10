@@ -21,6 +21,7 @@ app.config["SESSION_PERMANENT"] = True
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
+
 @app.route("/")
 def index():
 	if check := session_check("username"):
@@ -109,7 +110,6 @@ def about():
 		return check
 
 	return render_template("about.html", username=session.get("username"))
-
 
 @app.route("/profile")
 def profile():
