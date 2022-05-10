@@ -171,7 +171,7 @@ def private_data():
 	accounts = select_table()
 	return render_template("private data.html", accounts=accounts)
 
-@app.route("/logout", methods=["GET", "POST"])
+@app.route("/logout")
 def logout():
 	# forget username session
 	session["username"] = None
