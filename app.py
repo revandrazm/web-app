@@ -179,9 +179,8 @@ def logout():
 
 @app.route("/output")
 def output():
-	q = request.args.get("q")
-	if q:
-		accounts = select_table_like(request.args.get("q"))
+	if q := request.args.get('q'):
+		accounts = select_table_like(q)
 	else:
 		# empty search
 		accounts = []
