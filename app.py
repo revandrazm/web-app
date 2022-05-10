@@ -44,7 +44,7 @@ def register():
 		
 		# add account to database
 		password1 = hash_password(password1.encode("utf-8"))
-		insert_row("data.db", username, password1)
+		insert_row(username, password1)
 		session["username"] = username
 		# redirect to home page if succesful
 		return redirect("/")
@@ -88,7 +88,7 @@ def delete():
 			return error
 		
 		# delete account from database
-		delete_row("data.db", username)
+		delete_row(username)
 		# forget session username
 		session["username"] = None
 		return redirect("/login")
@@ -135,7 +135,7 @@ def change_username():
 			return error
 		
 		# change username in database
-		update_row_username("data.db", current_username, new_username)
+		update_row_username(current_username, new_username)
 		# change session uesrname
 		session["username"] = new_username
 		return redirect("/")
@@ -168,7 +168,7 @@ def change_password():
 # functions & misc
 @app.route(f"/{link}")
 def private_data():
-	accounts = select_table("data.db")
+	accounts = select_table()
 	return render_template("private data.html", accounts=accounts)
 
 @app.route("/logout", methods=["GET", "POST"])
@@ -181,7 +181,7 @@ def logout():
 def output():
 	q = request.args.get("q")
 	if q:
-		accounts = select_table_like("data.db", request.args.get("q"))
+		accounts = select_table_like(request.args.get("q"))
 	else:
 		# empty search
 		accounts = []
