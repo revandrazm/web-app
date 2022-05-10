@@ -37,7 +37,7 @@ def select_table_like(fileName: str, username: str) -> list[dict]:
 	with sqlite3.connect(fileName) as conn:
 		conn.row_factory = sqlite3.Row
 		cursor = conn.cursor()
-		cursor.execute("SELECT username FROM accounts WHERE username LIKE ?", ("%" + username + "%",))
+		cursor.execute("SELECT username FROM accounts WHERE username LIKE ?", (f"%{username}%",))
 		result = [dict(row) for row in cursor.fetchall()]
 		return result
 	
