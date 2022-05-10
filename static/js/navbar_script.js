@@ -4,10 +4,10 @@ function openNewTab(link) {
 }
 
 // show time in id: time
-var update = function () {
+var update = () => {
 	document.querySelector("#time").innerHTML = moment().format("h:mm:ss A");
  };
 
-$(document).ready(function(){
+$(document).ready(() => {
 	setInterval(update, 100);
 });
